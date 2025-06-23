@@ -41,6 +41,28 @@ app.post('/api/publish', async(req, res)=>{
     }
 })
 
+app.get('/api/apps', async(req, res) =>{
+    try{
+        const apps = await AppModel.find();
+        res.status(200).json(apps)
+    }
+    catch(err){
+        console.log('Error in apps :', err )
+        res.status(500).json({ error: err.message });
+    }
+})
+
+app.get('/api/apps/:id', async (req, res) => {
+    try{
+        const app = await AppModel.findById(req.params.id)
+        if(!app) return res.status(404).json({ message: 'not found!'})
+        res.status(200).json(app)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+
 
 
 app.listen(PORT, ()=> console.log(`Server start on ${PORT}`))
