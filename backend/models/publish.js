@@ -8,7 +8,8 @@ const appSchema = new Schema({
     description: {type: String, required: true},
     date:  { type: Date, default: Date.now },
     features: {type: [String], required: true},
-    link: {type: String, required: true}
+    link: {type: String, required: true},
+    imageUrl: {type: String, required: true}
 });
 
 const AppModel = mongoose.model('App', appSchema);

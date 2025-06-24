@@ -1,8 +1,10 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
+import multer from 'multer';
+import path from 'path'
 import dbconnection from './db/connection.js';
 import AppModel from './models/publish.js';
-import cors from 'cors'
 
 
 dotenv.config();
@@ -15,6 +17,7 @@ const DBURL = process.env.DB_FULLURL;
 
 app.use(cors())
 app.use(express.json())
+app.use('/uploads', express.static('uploads'))
 
 
 dbconnection(DBURL);
