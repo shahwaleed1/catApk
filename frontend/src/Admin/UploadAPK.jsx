@@ -13,7 +13,8 @@ const UploadAPK = () => {
         version: '',
         description: '',
         features: '',
-        link: ''
+        link: '',
+        image: ''
     });
 
     const [errors, setErrors] = useState({})
@@ -50,6 +51,7 @@ const UploadAPK = () => {
         if (!formData.description) newErrors.description = "Description is required";
         if (!formData.features) newErrors.features = "Features is required";
         if (!formData.link) newErrors.link = "Link is required";
+        // if (!formData.image) newErrors.image = "image is required";
 
         setErrors(newErrors)
 
@@ -72,18 +74,17 @@ const UploadAPK = () => {
         }
     }
 
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result)
-                console.log(setImage)
-            }
-            reader.readAsDataURL(file);
-        }
-    }
+    // const handleImageChange = (e) => {
+    //     const file = e.target.files[0];
+    //     if (file) {
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImage(reader.result)
+    //             console.log(setImage)
+    //         }
+    //         reader.readAsDataURL(file);
+    //     }
+    // }
     return (
         <div className=''>
             <div className='container min-w-xl max-w-7xl m-auto rounded-lg p-4'>
@@ -91,11 +92,14 @@ const UploadAPK = () => {
                     <form onSubmit={handleSubmit}>
                         <label className="cursor-pointer inline-block bg-lime-600 text-white my-3 px-4 py-2 rounded">
                             Upload App icon
-                            <input type="file" hidden onChange={handleImageChange} />
+                            <input type="file" hidden accept='image/*' onChange={(e) =>{
+                                const file = e.target.files[0];
+                                setFormData({ ...formData, image: file });
+                            }} />
                         </label>
                         <label className="cursor-pointer inline-block bg-lime-600 text-white my-3 ms-6 px-4 py-2 rounded">
                             Upload ScreenShort
-                            <input type="file" hidden onChange={handleImageChange} />
+                            <input type="file" hidden />
                         </label>
 
                         <input className='p-2 w-full border-2 rounded border-zinc-200 focus:outline-zinc-400' type="text" placeholder='App Name' name='name' onChange={handleChange} value={formData.name} />
@@ -116,13 +120,14 @@ const UploadAPK = () => {
                         {errors.features && <p className="text-red-500 ps-1">{errors.features}</p>}
                         <input className='p-2 w-full  mt-3 border-2 rounded border-zinc-200 focus:outline-zinc-400' type="text" placeholder='Paste app link here' name='link' onChange={handleChange} value={formData.link} />
                         {errors.link && <p className="text-red-500 ps-1">{errors.link}</p>}
-                        <button type='submit' className='cursor-pointer w-full inline-block bg-lime-600 text-white mt-6 py-2 rounded'>Publish</button>
+                        <button onSubmit={handleSubmit} type='submit' className='cursor-pointer w-full inline-block bg-lime-600 text-white mt-6 py-2 rounded'>Publish</button>
+                        {errors.image && <p className="text-red-500 ps-1">{errors.image}</p>}
                     </form>
                     <div className='w-1/2'>
                         <div>
                             <img className='w-35 m-auto p-4' src="appimg.png" alt="App.image" />
                             <h4 className='text-3xl font-semibold text-center mt-6 mb-1'>ScreenShorts</h4>
-                            <img className='w-70 m-auto' src={image} alt="image" />
+                            {/* <img className='w-70 m-auto' src={image} alt="image" /> */}
                         </div>
                     </div>
                 </div>

@@ -22,13 +22,30 @@ app.use('/uploads', express.static('uploads'))
 
 dbconnection(DBURL);
 
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cd(null, 'uploads/'),
+    filename: (req, file, cb) =>
+        cb(null, Date.now() + path.extname(file.originalname))
+});
+const upload = multer({ storage })
+
+
+
+
 app.get('/',(req, res)=>{
     return res.status(200).json('Hello word! 2025')
 })
 
-app.post('/api/publish', async(req, res)=>{
+app.post('/api/publish',upload.single('image'), async(req, res)=>{
+
+    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+
     try{
-        const newApp = new AppModel(req.body);
+        const newApp = new AppModel({
+            ...req.body,
+            image: imageUrl
+        });
         const savedApp = await newApp.save();
 
 
