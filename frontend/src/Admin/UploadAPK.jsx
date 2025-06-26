@@ -6,7 +6,8 @@ import 'notyf/notyf.min.css';
 
 
 const UploadAPK = () => {
-    const [image, setImage] = useState(null);
+    const [icon, setIcon] = useState(null);
+    const [screenshort, setScreenShort] = useState([]);
 
     const [formData, setFormData] = useState({
         name: '',
@@ -14,7 +15,8 @@ const UploadAPK = () => {
         description: '',
         features: '',
         link: '',
-        image: ''
+        icon: '',
+        images: ''
     });
 
     const [errors, setErrors] = useState({})
@@ -51,16 +53,20 @@ const UploadAPK = () => {
         if (!formData.description) newErrors.description = "Description is required";
         if (!formData.features) newErrors.features = "Features is required";
         if (!formData.link) newErrors.link = "Link is required";
-        // if (!formData.image) newErrors.image = "image is required";
+        if (!formData.icon) newErrors.icon = "image is required";
+        if (!formData.images) newErrors.images = "image is required";
 
         setErrors(newErrors)
 
 
-        if (Object.keys(newErrors).length > 0) return;
+        if (Object.keys(newErrors).length > 0){
+            notyf.error(`All form fields are required.`);
+            return;  
+        } 
 
         try {
             const response = await axios.post('http://localhost:5000/api/publish', formData, {
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
 
             console.log(response.data)
@@ -74,17 +80,32 @@ const UploadAPK = () => {
         }
     }
 
-    // const handleImageChange = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onloadend = () => {
-    //             setImage(reader.result)
-    //             console.log(setImage)
-    //         }
-    //         reader.readAsDataURL(file);
-    //     }
-    // }
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFormData({ ...formData, image: file})
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setIcon(reader.result)
+            }
+            reader.readAsDataURL(file);
+        }
+    }
+
+    const handleManyImageChange = (e) => {
+        const files = Array.from(e.target.files);
+        
+
+        setFormData({ ...formData, image: files})
+        if (files) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setScreenShort(reader.result)
+            }
+            reader.readAsDataURL(files);
+        }
+    }
+
     return (
         <div className=''>
             <div className='container min-w-xl max-w-7xl m-auto rounded-lg p-4'>
@@ -92,14 +113,11 @@ const UploadAPK = () => {
                     <form onSubmit={handleSubmit}>
                         <label className="cursor-pointer inline-block bg-lime-600 text-white my-3 px-4 py-2 rounded">
                             Upload App icon
-                            <input type="file" hidden accept='image/*' onChange={(e) =>{
-                                const file = e.target.files[0];
-                                setFormData({ ...formData, image: file });
-                            }} />
+                            <input type="file" hidden accept='image/*' onChange={handleImageChange} />
                         </label>
                         <label className="cursor-pointer inline-block bg-lime-600 text-white my-3 ms-6 px-4 py-2 rounded">
                             Upload ScreenShort
-                            <input type="file" hidden />
+                            <input type="file" hidden accept='image/*' multiple onChange={handleManyImageChange} />
                         </label>
 
                         <input className='p-2 w-full border-2 rounded border-zinc-200 focus:outline-zinc-400' type="text" placeholder='App Name' name='name' onChange={handleChange} value={formData.name} />
@@ -121,13 +139,15 @@ const UploadAPK = () => {
                         <input className='p-2 w-full  mt-3 border-2 rounded border-zinc-200 focus:outline-zinc-400' type="text" placeholder='Paste app link here' name='link' onChange={handleChange} value={formData.link} />
                         {errors.link && <p className="text-red-500 ps-1">{errors.link}</p>}
                         <button onSubmit={handleSubmit} type='submit' className='cursor-pointer w-full inline-block bg-lime-600 text-white mt-6 py-2 rounded'>Publish</button>
-                        {errors.image && <p className="text-red-500 ps-1">{errors.image}</p>}
                     </form>
                     <div className='w-1/2'>
                         <div>
-                            <img className='w-35 m-auto p-4' src="appimg.png" alt="App.image" />
+                            <img className='w-30 m-auto mt-8 rounded-xl' src={icon} alt="App.image" />
+                            {errors.icon && <p className="text-red-500 ps-1 text-center">{errors.icon}</p>}
                             <h4 className='text-3xl font-semibold text-center mt-6 mb-1'>ScreenShorts</h4>
-                            {/* <img className='w-70 m-auto' src={image} alt="image" /> */}
+                            {screenshort.map((image, index) => (
+                                <img className='w-70 m-auto' key={index} src={URL.createObjectURLimage(image)} alt="image" />
+                            ))}
                         </div>
                     </div>
                 </div>
