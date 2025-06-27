@@ -72,6 +72,16 @@ app.get('/api/apps', async(req, res) =>{
     }
 })
 
+app.delete('/api/apps/:id', async(req, res)=>{
+    try{
+        const appdelete = await AppModel.findByIdAndDelete(req.params.id);
+        res.status(200).json({msg: 'App deleted successfully' , appdelete})
+    }
+    catch(err){
+        console.error(err)
+    }
+})
+
 app.get('/api/apps/:id', async (req, res) => {
     try{
         const app = await AppModel.findById(req.params.id)
