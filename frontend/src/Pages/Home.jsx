@@ -1,37 +1,50 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Slider from '../Components/Slider'
+import axios from 'axios'
 
 
 
 const Home = () => {
+
+    const [data, setData] = useState([]);
+    const [loader, setLoader] = useState(false);
+
+    async function fetchData() {
+        try {
+
+            const response = await axios.get('http://localhost:5000/api/apps');
+            setData(response.data);
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        console.log("Data updated:", data);
+    }, [data]);
+
 
     return (
         <div>
             <Slider />
             <div className='container mt-8'>
                 <h2 className='mb-3 text-2xl font-semibold'>New🔥</h2>
-                <div className='flex gap-5'>
-                    <div className='w-[10rem] p-1 rounded-xl pb-3 shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in'>
-                        <img className='w-[10rem]' src="appimg.png" alt="" />
-                        <div className='px-2 leading-5'>
-                            <h2 className='font-semibold'>App Name</h2>
+                <div className='flex gap-5 overflow-x-scroll overflow-y-hidden p-1'>
+                    {data.map((app, index)=>(
+                    <div key={index} className='w-[11rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in'>
+                        <img className='min-w-[10rem] rounded-lg' src={app.image} alt="" />
+                        <div className='px-1 leading-5'>
+                            <h2 className='font-semibold'>{app.name}</h2>
                             <small>game gater</small>
                         </div>
                     </div>
-                    <div className='w-[10rem] p-1 rounded-xl pb-3 shadow-md shadow-gray-300'>
-                        <img className='w-[10rem]' src="appimg.png" alt="" />
-                        <div className='px-2 leading-5'>
-                            <h2 className='font-semibold'>App Name</h2>
-                            <small>game gater</small>
-                        </div>
-                    </div>
-                    <div className='w-[10rem] p-1 rounded-xl pb-3 shadow-md shadow-gray-300'>
-                        <img className='w-[10rem]' src="appimg.png" alt="" />
-                        <div className='px-2 leading-5'>
-                            <h2 className='font-semibold'>App Name</h2>
-                            <small>game gater</small>
-                        </div>
-                    </div>
+                    ))}
                 </div>
                 <div className='mt-10'>
                     <h2 className='mb-4 text-2xl font-semibold'>Apps</h2>
