@@ -37,6 +37,9 @@ app.get('/',(req, res)=>{
     return res.status(200).json('Hello word! 2025')
 })
 
+
+
+
 app.post('/api/publish',upload.single('image'), async(req, res)=>{
 
     const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
@@ -61,6 +64,9 @@ app.post('/api/publish',upload.single('image'), async(req, res)=>{
     }
 })
 
+
+
+
 app.get('/api/apps', async(req, res) =>{
     try{
         const apps = await AppModel.find();
@@ -72,6 +78,9 @@ app.get('/api/apps', async(req, res) =>{
     }
 })
 
+
+
+
 app.delete('/api/apps/:id', async(req, res)=>{
     try{
         const appdelete = await AppModel.findByIdAndDelete(req.params.id);
@@ -81,6 +90,22 @@ app.delete('/api/apps/:id', async(req, res)=>{
         console.error(err)
     }
 })
+
+
+app.put('/api/apps/:id', async (req, res) => {
+    try{
+        const updateApp = await AppModel.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            { new : true, runValidators: true}
+        )
+        res.status(200).json({ msg: 'App Updated Success' })
+    } 
+    catch(err){
+        console.log('Error updating app: ', err)
+    }   
+})
+
 
 app.get('/api/apps/:id', async (req, res) => {
     try{

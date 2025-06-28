@@ -34,6 +34,12 @@ const Apklist = () => {
         }
     }
 
+    const deteleRequest = () =>{
+        if(handlerDelete){
+            
+        }
+    }
+
     const handlerDelete = async (id) => {
         try {
             const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
