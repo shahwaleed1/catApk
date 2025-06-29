@@ -23,7 +23,7 @@ const Apklist = () => {
         icon: '',
         images: ''
     })
-    // const [open, setOpen] = useState(true)
+    const [open, setOpen] = useState(false)
 
 
 
@@ -77,17 +77,19 @@ const Apklist = () => {
             description: app.description,
             features: app.features,
             link: app.link,
-            icon: app.image
-            // images: ,
-        })
-    }
+            icon: app.image,
+            images: ''
+        });
+        setOpen(true); // trigger modal open
+    };
 
 
-    const handlerUpdate = async (id) => {
+
+    const handlerUpdate = async () => {
         try {
             const res = await axios.put(`http://localhost:5000/api/apps/${editId}`, editForm);
             setEditId(null);
-            fetchApps(); 
+            fetchApps();
         } catch (err) {
             console.log('Error in Edit: ', err)
         }
@@ -102,14 +104,17 @@ const Apklist = () => {
                 <input className='w-[20rem] border-2 text-neutral-600 border-[#739dc4] p-1 px-4 rounded-2xl outline-[#3b81c2]' type="search" placeholder='Search' />
             </div>
 
-            <Formui 
+            <Formui
                 editForm={editForm}
                 setEditForm={setEditForm}
                 editId={editId}
                 handlerUpdate={handlerUpdate}
+                open={open}
+                setOpen={setOpen}
             />
 
-            
+
+
 
             <div className='mt-4 p-2 text-neutral-700'>
                 {data.map((app) => (
@@ -123,7 +128,7 @@ const Apklist = () => {
                             <p>update: {new Date(app.createdAt).toLocaleString()}</p>
                         </div>
                         <div className='m-1'>
-                            <MdOutlineEdit className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
+                            <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
                             <MdDeleteOutline onClick={() => handlerDelete(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' />
                         </div>
                     </div>

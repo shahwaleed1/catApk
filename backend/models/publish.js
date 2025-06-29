@@ -8,7 +8,7 @@ const appSchema = new Schema({
     description: {type: String, require: true},
     features: {type: [String], require: true},
     link: {type: String, require: true},
-    image: {type: String, require: true},
+    icon: {type: String, require: true},
     createdAt: { type: Date, default: Date.now }
 });
 

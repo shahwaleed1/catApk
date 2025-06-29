@@ -16,7 +16,7 @@ const UploadAPK = () => {
         features: '',
         link: '',
         icon: '',
-        images: ''
+        // images: ''
     });
 
     const [errors, setErrors] = useState({})
@@ -53,8 +53,8 @@ const UploadAPK = () => {
         if (!formData.description) newErrors.description = "Description is required";
         if (!formData.features) newErrors.features = "Features is required";
         if (!formData.link) newErrors.link = "Link is required";
-        if (!formData.icon) newErrors.icon = "image is required";
-        if (!formData.images) newErrors.images = "image is required";
+        // if (!formData.icon) newErrors.icon = "icon is required";
+        // if (!formData.images) newErrors.images = "image is required";
 
         setErrors(newErrors)
 

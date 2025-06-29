@@ -99,10 +99,14 @@ app.put('/api/apps/:id', async (req, res) => {
             req.body,
             { new : true, runValidators: true}
         )
-        res.status(200).json({ msg: 'App Updated Success' })
+        if (!updateApp) {
+            return res.status(404).json({ message: 'App not found' });
+        }
+        res.status(200).json({ msg: 'App Updated Success', updateApp })
     } 
     catch(err){
         console.log('Error updating app: ', err)
+        res.status(500).json({ error: 'Server error' });
     }   
 })
 
