@@ -5,12 +5,27 @@ import { MdOutlineEdit } from "react-icons/md";
 import axios from 'axios'
 import { useState } from 'react';
 import { Notyf } from 'notyf';
+import Formui from '../Components/Formui';
 
 
 
 
 const Apklist = () => {
+
     const [data, setData] = useState([])
+    const [editId, setEditId] = useState(null);
+    const [editForm, setEditForm] = useState({
+        name: '',
+        version: '',
+        description: '',
+        features: '',
+        link: '',
+        icon: '',
+        images: ''
+    })
+    // const [open, setOpen] = useState(true)
+
+
 
     const notyf = new Notyf({
         duration: 3000,
@@ -34,11 +49,11 @@ const Apklist = () => {
         }
     }
 
-    const deteleRequest = () =>{
-        if(handlerDelete){
-            
-        }
-    }
+    // const deteleRequest = () =>{
+    //     if(handlerDelete){
+
+    //     }
+    // }
 
     const handlerDelete = async (id) => {
         try {
@@ -54,7 +69,31 @@ const Apklist = () => {
     }
 
 
-    console.log('This data from Apklist componet :', data)
+    const handleEditClick = (app) => {
+        setEditId(app._id);
+        setEditForm({
+            name: app.name,
+            version: app.version,
+            description: app.description,
+            features: app.features,
+            link: app.link,
+            icon: app.image
+            // images: ,
+        })
+    }
+
+
+    const handlerUpdate = async (id) => {
+        try {
+            const res = await axios.put(`http://localhost:5000/api/apps/${editId}`, editForm);
+            setEditId(null);
+            fetchApps(); 
+        } catch (err) {
+            console.log('Error in Edit: ', err)
+        }
+    }
+
+    // console.log('This data from Apklist componet :', data)
 
 
     return (
@@ -62,6 +101,16 @@ const Apklist = () => {
             <div className='flex justify-end'>
                 <input className='w-[20rem] border-2 text-neutral-600 border-[#739dc4] p-1 px-4 rounded-2xl outline-[#3b81c2]' type="search" placeholder='Search' />
             </div>
+
+            <Formui 
+                editForm={editForm}
+                setEditForm={setEditForm}
+                editId={editId}
+                handlerUpdate={handlerUpdate}
+            />
+
+            
+
             <div className='mt-4 p-2 text-neutral-700'>
                 {data.map((app) => (
                     <div key={app._id} className='border border-neutral-200 p-2 my-2 rounded-lg flex gap-3 hover:shadow-md transition-all ease-in-out'>
