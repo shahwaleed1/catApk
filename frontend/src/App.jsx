@@ -7,18 +7,20 @@ import Sidebar from './Admin/Sidebar.jsx'
 import Footer from './Components/Footer.jsx'
 import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
+import Appdetails from './Components/Appdetails.jsx'
 
 const App = () => {
   return (
     <>
-      {/* <Navbar />
-      <Routes>
+      <Navbar />
+      <Appdetails />
+      {/* <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer /> */}
-      <Admin />
+      {/* <Admin /> */}
     </>
   )
 }
