@@ -119,6 +119,7 @@ app.get('/api/apps/:id', async (req, res) => {
     }
     catch(err){
         console.log(err)
+        res.status(500).json({ message: 'Server Error' });
     }
 })
 
