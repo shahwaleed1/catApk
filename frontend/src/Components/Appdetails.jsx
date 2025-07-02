@@ -7,13 +7,14 @@ const Appdetails = () => {
 
     const { id } = useParams()
     const [app, setApp] = useState(null);
+    const [error, setError] = useState(null);
 
     useEffect(()=>{
         const fetchApp = async () => {
             try{
-                const res = axios.get(`http://localhost:5000/api/apps/${id}`)
+                const res = await axios.get(`http://localhost:5000/api/apps/${id}`)
                 setApp(res.data)
-                console.log(res.data)
+                // console.log(res.data)
             } catch (err){
                 console.log(err)
             }
@@ -22,22 +23,22 @@ const Appdetails = () => {
         fetchApp()
     },[id])
 
-    if (!app) return <p className="p-10">Loading...</p>
+    if (!app) return <p className="p-10 text-center">Something went wrong.</p>
 
 
     return (
         <div className='container '>
             <div className='flex p-4 px-10 mt-4 text-neutral-700'>
                 <div>
-                    <img className='w-[6rem] rounded-lg' src={app.image} alt="" />
+                    <img className='w-[6rem] rounded-lg' src={app.image || app.icon} alt="" />
                 </div>
                 <div className='flex-1 ps-3'>
                     <h4 className='text-3xl'>{app.name}</h4>
-                    <p>details</p>
+                    <p>{app.features}</p>
                     <p>star</p>
                 </div>
                 <div className='mt-2'>
-                    <Downloadbutton />
+                    <Downloadbutton link={app.link} />
                     {/* <button className='py-2 px-3 text-white bg-[#456379] rounded-sm'>Download</button> */}
                 </div>
             </div>

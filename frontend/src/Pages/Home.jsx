@@ -30,18 +30,13 @@ const Home = () => {
         }
     }
 
-    // useEffect(()=>{
-    //     console.log('Data by Id:', appdetails)
-    // },[appdetails])
-
-
     useEffect(() => {
         fetchData();
     }, []);
 
-    useEffect(() => {
-        console.log("Data updated:", data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.log("Data updated:", data);  // for console or debuging
+    // }, [data]);
 
 
     return (
@@ -52,7 +47,7 @@ const Home = () => {
                 <div className='flex gap-5 overflow-x-scroll overflow-y-hidden p-1'>
                     {data.map((app) => (
                         <div key={app._id} onClick={() => navigate(`/appdetails/${app._id}`)} className='w-[11rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in'>
-                            <img className='min-w-[10rem] rounded-lg' src={app.image} alt="" />
+                            <img className='min-w-[10rem] rounded-lg' src={app.image || app.icon} alt={app.name} />
                             <div className='px-1 leading-5'>
                                 <h2 className='font-semibold'>{app.name}</h2>
                                 <small>game gater</small>

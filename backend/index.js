@@ -5,6 +5,7 @@ import multer from 'multer';
 import path from 'path'
 import dbconnection from './db/connection.js';
 import AppModel from './models/publish.js';
+import mongoose from 'mongoose';
 
 
 dotenv.config();
@@ -40,14 +41,14 @@ app.get('/',(req, res)=>{
 
 
 
-app.post('/api/publish',upload.single('image'), async(req, res)=>{
+app.post('/api/publish',upload.single('icon'), async(req, res)=>{
 
-    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
 
     try{
         const newApp = new AppModel({
             ...req.body,
-            image: imageUrl
+            icon: iconUrl
         });
         const savedApp = await newApp.save();
 
@@ -112,8 +113,15 @@ app.put('/api/apps/:id', async (req, res) => {
 
 
 app.get('/api/apps/:id', async (req, res) => {
+
+    const { id } = req.params;
+
+    // if(!mongoose.Types.ObjectId.isValid(id)){
+    //     return res.status(400).json({ message: 'Invalid ID format'})
+    // }
+
     try{
-        const app = await AppModel.findById(req.params.id)
+        const app = await AppModel.findById(id)
         if(!app) return res.status(404).json({ message: 'not found!'})
         res.status(200).json(app)
     }

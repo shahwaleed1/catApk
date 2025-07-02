@@ -53,7 +53,7 @@ const UploadAPK = () => {
         if (!formData.description) newErrors.description = "Description is required";
         if (!formData.features) newErrors.features = "Features is required";
         if (!formData.link) newErrors.link = "Link is required";
-        // if (!formData.icon) newErrors.icon = "icon is required";
+        if (!formData.icon) newErrors.icon = "icon is required";
         // if (!formData.images) newErrors.images = "image is required";
 
         setErrors(newErrors)
@@ -82,7 +82,7 @@ const UploadAPK = () => {
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
-        setFormData({ ...formData, image: file})
+        setFormData({ ...formData, icon: file})
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
