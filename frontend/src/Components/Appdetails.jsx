@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Downloadbutton from './Downloadbutton'
 import axios from 'axios'
-import { useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { FaArrowLeftLong } from "react-icons/fa6";
+
 
 const Appdetails = () => {
 
@@ -9,25 +10,28 @@ const Appdetails = () => {
     const [app, setApp] = useState(null);
     const [error, setError] = useState(null);
 
-    useEffect(()=>{
+    const navigate =  useNavigate()
+
+    useEffect(() => {
         const fetchApp = async () => {
-            try{
+            try {
                 const res = await axios.get(`http://localhost:5000/api/apps/${id}`)
                 setApp(res.data)
                 // console.log(res.data)
-            } catch (err){
+            } catch (err) {
                 console.log(err)
             }
         }
 
         fetchApp()
-    },[id])
+    }, [id])
 
-    if (!app) return <p className="p-10 text-center">Something went wrong.</p>
+    if (!app) return <p className="p-10 text-center">Loading...</p>
 
 
     return (
         <div className='container '>
+            <button onClick={() => navigate(-1)} className='py-1 px-3 my-5  text-[#456379]  rounded-sm inline-flex items-center font-semibold gap-2 hover:cursor-pointer hover:bg-[#d3e9f961] transition-all' > <FaArrowLeftLong /> back </button>
             <div className='flex p-4 px-10 mt-4 text-neutral-700'>
                 <div>
                     <img className='w-[6rem] rounded-lg' src={app.image || app.icon} alt="" />
@@ -38,8 +42,7 @@ const Appdetails = () => {
                     <p>star</p>
                 </div>
                 <div className='mt-2'>
-                    <Downloadbutton link={app.link} />
-                    {/* <button className='py-2 px-3 text-white bg-[#456379] rounded-sm'>Download</button> */}
+                    <a target='_blank' rel="noopener noreferrer" href={app.link} className='py-2 px-3 text-white bg-[#456379] rounded-sm'>Download</a>
                 </div>
             </div>
             <div className='px-10 mt-5'>
@@ -53,10 +56,9 @@ const Appdetails = () => {
                     <div>hi</div>
                     <div>mi</div>
                 </div>
-                <Downloadbutton />
             </div>
             <div className='px-10 mt-5'>
-                desripation
+                {app.description}
             </div>
         </div>
     )

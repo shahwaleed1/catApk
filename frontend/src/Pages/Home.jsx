@@ -46,8 +46,8 @@ const Home = () => {
                 <h2 className='mb-3 text-2xl font-semibold'>New🔥</h2>
                 <div className='flex gap-5 overflow-x-scroll overflow-y-hidden p-1'>
                     {data.map((app) => (
-                        <div key={app._id} onClick={() => navigate(`/appdetails/${app._id}`)} className='w-[11rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in'>
-                            <img className='min-w-[10rem] rounded-lg' src={app.image || app.icon} alt={app.name} />
+                        <div key={app._id} onClick={() => navigate(`/appdetails/${app._id}`)} className='w-[9rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in hover:cursor-pointer'>
+                            <img className='min-w-[8rem] rounded-lg' src={app.image || app.icon} alt={app.name} />
                             <div className='px-1 leading-5'>
                                 <h2 className='font-semibold'>{app.name}</h2>
                                 <small>game gater</small>
