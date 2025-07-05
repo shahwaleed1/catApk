@@ -8,11 +8,14 @@ import Footer from './Components/Footer.jsx'
 import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
 import Appdetails from './Components/Appdetails.jsx'
+import AdminLogin from './Pages/AdminLogin.jsx'
 
 const App = () => {
   return (
     <>
-      {/* <Navbar />
+      <Navbar />
+      <AdminLogin />
+      {/* 
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -20,7 +23,7 @@ const App = () => {
         <Route path='/appdetails/:id' element={<Appdetails />} />
       </Routes>
       <Footer /> */}
-      <Admin />
+      {/* <Admin /> */}
     </>
   )
 }
