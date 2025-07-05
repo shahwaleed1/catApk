@@ -12,15 +12,15 @@ import Appdetails from './Components/Appdetails.jsx'
 const App = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/appdetails/:id' element={<Appdetails />} />
       </Routes>
-      <Footer />
-      {/* <Admin /> */}
+      <Footer /> */}
+      <Admin />
     </>
   )
 }

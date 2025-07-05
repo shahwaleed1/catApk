@@ -9,7 +9,7 @@ const Sidebar = ({ onMenuClick, activePage }) => {
     return (
         <div className='h-screen bg-[#20374b] text-white'>
             <div className='p-3 relative'>
-                <img src="nav_logo.png" alt="" />
+                <img src="/nav_logo.png" alt="" />
                 <h4 className='text-xl font-semibold text-center absolute right-10 top-5'>Admin</h4>
                 <hr className='border-[#30516e] my-2' />
             </div>

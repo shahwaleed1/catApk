@@ -120,7 +120,7 @@ const Apklist = () => {
                 {data.map((app) => (
                     <div key={app._id} className='border border-neutral-200 p-2 my-2 rounded-lg flex gap-3 hover:shadow-md transition-all ease-in-out'>
                         <div>
-                            <img className='aspect-square w-21 rounded-lg' src={app.image} alt="" />
+                            <img className='aspect-square w-21 rounded-lg' src={app.image || app.icon} alt="" />
                         </div>
                         <div className='flex-1'>
                             <h4 className='font-semibold text-lg'>{app.name}</h4>
