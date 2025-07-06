@@ -1,6 +1,24 @@
 import React from 'react'
+import { useState } from 'react'
 
 const AdminLogin = () => {
+
+    const [ admin, setAdmin] = useState({
+        name: '',
+        email: '',
+        password: ''
+    });
+    const [error, setError ] = useState(null);
+
+
+    const handleAdmin = async(e) =>{
+        e.preventDefault();
+        console.log('clicked')
+        
+    }
+
+
+
   return (
     <div className='container min-h-screen flex items-center justify-center text-neutral-700'>
         <div className='p-5 rounded-lg min-w-md shadow-xl'>
@@ -10,7 +28,7 @@ const AdminLogin = () => {
                     <input type="text" placeholder='Name' className='' />
                     <input type="text" placeholder='Email' />
                     <input type="text" placeholder='Password'/>
-                    <button className='bg-lime-600 p-2 rounded-full mt-3 text-white'>Login</button>
+                    <button onClick={handleAdmin} className='bg-lime-600 p-2 rounded-full mt-3 text-white hover:cursor-pointer'>Login</button>
                 </form>
             </div>
         </div>
