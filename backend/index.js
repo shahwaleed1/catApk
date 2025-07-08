@@ -6,6 +6,7 @@ import path from 'path'
 import dbconnection from './db/connection.js';
 import AppModel from './models/publish.js';
 import mongoose from 'mongoose';
+import adminRoutes from './routes/Admin.js';
 
 
 dotenv.config();
@@ -130,6 +131,11 @@ app.get('/api/apps/:id', async (req, res) => {
         res.status(500).json({ message: 'Server Error' });
     }
 })
+
+
+app.use('/api/admin', adminRoutes);
+
+
 
 
 
