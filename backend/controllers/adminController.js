@@ -44,6 +44,6 @@ export const login = async(req, res) => {
         return res.status(200).json({ message: 'Login successful!'})
     }
     catch(err){
-        return res.status(500).json({ message: err.message})
+        return res.status(500).json({ message: 'Error in login page :', err})
     }
 }
