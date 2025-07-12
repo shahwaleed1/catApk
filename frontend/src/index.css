@@ -1,5 +1,13 @@
 @import "tailwindcss";
 
+
+@theme{
+  --color-primary: #456379;
+  --color-primary-light: #6187a2;
+  --color-primary-dark: #538db6;
+  
+}
+
 .container {
   width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);

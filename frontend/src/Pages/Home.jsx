@@ -35,7 +35,7 @@ const Home = () => {
     }, []);
 
     // useEffect(() => {
-    //     console.log("Data updated:", data);  // for console or debuging
+    //     console.log("Data updated:", data); 
     // }, [data]);
 
 

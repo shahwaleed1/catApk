@@ -36,7 +36,6 @@ const Contact = () => {
             <div className='mt-15 p-2'>
                 <h2 className='text-3xl'>Follow Us</h2>
                 <p>Stay updated with the latest mods, tips, and updates:</p>
-                {/* <p>📸 Instagram | 🐦 Twitter | 💬 Telegram | 📘 Facebook</p> */}
             </div>
         </div>
     )

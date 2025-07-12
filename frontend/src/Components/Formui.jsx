@@ -16,7 +16,7 @@ const Formui = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handlerUpdate(editId); // editId is required to know which item to update
+    handlerUpdate(editId); 
     setOpen(false);
   };
 
@@ -32,7 +32,6 @@ const Formui = ({
                 Update Your App
               </DialogTitle>
 
-              {/* Icon Upload Placeholder */}
               <label className="cursor-pointer inline-block bg-lime-600 text-white my-3 px-4 py-2 rounded">
                 Upload App Icon
                 <input type="file" hidden />
