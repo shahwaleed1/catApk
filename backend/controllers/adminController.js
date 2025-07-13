@@ -19,7 +19,7 @@ export const register = async(req, res) => {
     }
 
     catch(err){
-        return res.status(500).json({ message: err.message})
+        return res.status(500).json({ message: 'Error in register page:' , err})
     }
 }
 

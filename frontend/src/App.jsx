@@ -8,13 +8,23 @@ import Footer from './Components/Footer.jsx'
 import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
 import Appdetails from './Components/Appdetails.jsx'
-import AdminLogin from './Pages/AdminLogin.jsx'
+import Adminregister from './Pages/AdminRegister.jsx'
+import Adminlogin from './Pages/AdminLogin.jsx'
+
+
 
 const App = () => {
+
   return (
     <>
       <Navbar />
-      <AdminLogin />
+      
+      <Routes>
+        <Route path='/adminlogin' element={<Adminlogin />} />
+        <Route path='/adminregister' element={<Adminregister />} />
+        <Route path='/adminplane' element={<Admin />} />
+      </Routes>
+
       {/* 
       <Routes>
         <Route path='/' element={<Home />} />

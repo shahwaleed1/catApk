@@ -4,6 +4,8 @@ import { CgGames } from "react-icons/cg";
 import { IoIosApps } from "react-icons/io";
 import { FaRegNewspaper } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
+import { RiAdminLine } from "react-icons/ri";
+
 
 
 const Navbar = () => {
@@ -27,6 +29,7 @@ const Navbar = () => {
                     <Link className='transition duration-150 ease-in-out hover:text-[#FFBD59]'><IoIosApps className='inline me-1' />Apps</Link>
                     <Link className='transition duration-150 ease-in-out hover:text-[#FFBD59]'><CgGames className='inline me-1' />Games</Link>
                     <Link className='transition duration-150 ease-in-out hover:text-[#FFBD59]'><FaRegNewspaper className='inline me-1' />Blog</Link>
+                    <Link to='/adminregister' className='transition duration-150 ease-in-out hover:text-[#FFBD59]'><RiAdminLine className='inline me-1' />Login </Link>
                 </div>
             </div>
         </div>
