@@ -1,5 +1,8 @@
 import adminModel from "../models/adminModel.js";
-import bcrypt, { hash } from 'bcryptjs'
+import bcrypt, { hash } from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+
+
 
 export const register = async(req, res) => {
     const { name, email, password } = req.body;
@@ -14,6 +17,8 @@ export const register = async(req, res) => {
         const hashPassword = await bcrypt.hash(password, 10);
         const newAdmin = new adminModel({ name, email, password : hashPassword });
         await newAdmin.save()
+
+        const token = jwt.sign({id: admins._id}, )
 
         return res.status(200).json({ message: 'successfull registion!'})
     }

@@ -20,6 +20,12 @@ const Adminlogin = () => {
   const handleAdminLogin = async (e) => {
     e.preventDefault();
     // console.log(adminLogin);
+
+    if(!adminLogin.email || !adminLogin.password){
+      alert('fill the form!')
+      return
+    }
+
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', adminLogin);
       if (response.status == 200) {
