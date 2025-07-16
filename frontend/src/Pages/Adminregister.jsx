@@ -3,8 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Notyf } from 'notyf';
 import { Link, useNavigate } from 'react-router-dom';
-import AdminLogin from './AdminLogin';
-import Adminlogin from './AdminLogin';
+import Adminlogin from './Adminlogin';
 
 const Adminregister = () => {
 
@@ -34,16 +33,24 @@ const Adminregister = () => {
 
     const handleAdmin = async (e) => {
         e.preventDefault();
-        console.log(admin)
+
         try {
+
             const response = await axios.post(`http://localhost:5000/api/admin/register`, admin);
-            console.log(response.data);
+
+            if(response.data.isEmail === true){
+                notyf.error('Email is already registered')
+                return;
+            }
+
             if (response.status == 200) {
                 notyf.success('Succesfully Registion!');
                 navgate('/adminlogin');
             }
+
         } catch (err) {
             console.log('Error in Admin Regiser page : ', err)
+            notyf.error('Something went wrong while registering');
         }
     }
 
@@ -62,7 +69,7 @@ const Adminregister = () => {
                     </form>
                 </div>
                 <div className='text-center my-3'>
-                    <p>Already have an account? <Link to='/Adminlogin' className='text-primary-dark ms-1 font-medium'>Login</Link></p>
+                    <p>Already have an account? <Link to='/adminlogin' className='text-primary-dark ms-1 font-medium'>Login</Link></p>
                 </div>
             </div>
         </div>

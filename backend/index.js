@@ -7,6 +7,7 @@ import dbconnection from './db/connection.js';
 import AppModel from './models/publish.js';
 import mongoose from 'mongoose';
 import adminRoutes from './routes/Admin.js';
+import cookieParser from 'cookie-parser';
 
 
 dotenv.config();
@@ -20,6 +21,7 @@ const DBURL = process.env.DB_FULLURL;
 app.use(cors())
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
+app.use(cookieParser())
 
 
 dbconnection(DBURL);

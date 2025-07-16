@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 
 
+
 export const register = async(req, res) => {
     const { name, email, password } = req.body;
     
@@ -11,16 +12,22 @@ export const register = async(req, res) => {
 
         const isEmail = await adminModel.findOne({ email });
         if(isEmail){
-            return res.status(400).json({ message: 'This Gmail alread exsited.'})
+            return res.status(200).json({ isEmail: true, message: 'This Gmail alread exsited.'})
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
         const newAdmin = new adminModel({ name, email, password : hashPassword });
         await newAdmin.save()
 
-        const token = jwt.sign({id: admins._id}, )
+        // const token = jwt.sign({id: admins._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
+        // res.cookie('token', token, {
+        //     httpOnly: true,
+        //     secure: false,
+        //     sameSite: 'strict',
+        // });
 
-        return res.status(200).json({ message: 'successfull registion!'})
+        return res.status(200).json({ isMatch: false, message: 'Successfully registered!'});
+
     }
 
     catch(err){
