@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Notyf } from 'notyf';
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -9,6 +10,16 @@ const Adminlogin = () => {
   });
 
   const navgate = useNavigate()
+
+
+  const notyf = new Notyf({
+    duration: 3000,
+    position: {
+      y:  'top',
+      x: 'right'
+    }
+  })
+
 
   const handleChange = (e) => {
     setAdminLogin(prev => ({
@@ -22,7 +33,7 @@ const Adminlogin = () => {
     // console.log(adminLogin);
 
     if(!adminLogin.email || !adminLogin.password){
-      alert('fill the form!')
+      notyf.error('Fill the Form')
       return
     }
 
@@ -49,7 +60,7 @@ const Adminlogin = () => {
           </form>
         </div>
         <div className='text-center my-3'>
-          <p>Don't have an account? <Link to='/adminregister' className='text-primary-dark ms-1 font-medium'>Register</Link></p>
+          {/* <p>Don't have an account? <Link to='/adminregister' className='text-primary-dark ms-1 font-medium'>Register</Link></p> */}
         </div>
       </div>
     </div>

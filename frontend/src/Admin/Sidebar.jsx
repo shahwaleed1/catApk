@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleList } from "react-icons/ci";
 import { Link } from 'react-router-dom';
+import { RiAdminLine } from "react-icons/ri";
 
 
 const Sidebar = ({ onMenuClick, activePage }) => {
@@ -30,6 +31,15 @@ const Sidebar = ({ onMenuClick, activePage }) => {
                 >
                     <CiCircleList className="text-xl" />
                     APK List
+                </button>
+
+                <button
+                    onClick={() => onMenuClick('adminregister')}
+                    className={`w-full inline-flex items-center gap-2 ps-3 py-2 my-1
+                    ${activePage === 'adminregister' ? 'bg-[#375874] text-white' :  'text-white hover:bg-[#4c6377]'}`}
+                >
+                    <RiAdminLine className="text-xl" />
+                    Admins
                 </button>
             </div>
         </div>

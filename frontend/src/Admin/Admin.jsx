@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Sidebar from './Sidebar'
 import UploadAPK from './UploadAPK'
 import Apklist from './Apklist'
+import Adminregister from '../Pages/Adminregister'
 
 const Admin = () => {
     const [activePage, setActivePage] = useState('uploadapk')
@@ -16,6 +17,7 @@ const Admin = () => {
                 <div className='w-full p-4 mt-5'>
                     {activePage === 'uploadapk' &&  <UploadAPK />}
                     {activePage === 'apklist' && <Apklist />}
+                    {activePage === 'adminregister' && <Adminregister />}
                 </div>
             </div>
         </>

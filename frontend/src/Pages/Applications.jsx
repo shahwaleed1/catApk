@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Apps = () => {
+const Applications = () => {
   return (
     <div>Apps</div>
   )
 }
 
-export default Apps
+export default Applications

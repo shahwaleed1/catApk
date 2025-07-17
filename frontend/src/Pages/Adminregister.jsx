@@ -4,10 +4,12 @@ import axios from 'axios'
 import { Notyf } from 'notyf';
 import { Link, useNavigate } from 'react-router-dom';
 import Adminlogin from './Adminlogin';
+import { Imageinput } from '../Components/Imageinput';
 
 const Adminregister = () => {
 
-    const [admin, setAdmin] = useState({
+    const [adminData, setAdminData] = useState({
+        image: '',
         name: '',
         email: '',
         password: ''
@@ -25,7 +27,7 @@ const Adminregister = () => {
     })
 
     const handleChange = (e) => {
-        setAdmin(prev => ({
+        setAdminData(prev => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
@@ -36,7 +38,9 @@ const Adminregister = () => {
 
         try {
 
-            const response = await axios.post(`http://localhost:5000/api/admin/register`, admin);
+            const response = await axios.post(`http://localhost:5000/api/admin/register`, adminData, {
+               headers: { 'Content-Type': 'multipart/form-data' },
+            });
 
             if(response.data.isEmail === true){
                 notyf.error('Email is already registered')
@@ -60,12 +64,14 @@ const Adminregister = () => {
         <div className='container min-h-screen flex items-center justify-center text-neutral-700'>
             <div className='p-5 rounded-lg min-w-md shadow-xl'>
                 <h3 className='text-3xl text-center font-semibold text-neutral-700'>Admin <span className='text-primary-dark'>Register</span></h3>
-                <div className='[&>form>input]:border-primary-dark [&>form>input]:bg-[#E8F0FE] [&>form>input]:border-2 [&>form>input]:p-2 [&>form>input]:ps-4 [&>form>input]:rounded-full [&>form>input]:outline-none mt-8'>
-                    <form onSubmit={handleAdmin} className='flex flex-col gap-3'>
-                        <input type="text" placeholder='Name' onChange={handleChange} name='name' value={admin.name} />
-                        <input type="text" placeholder='Email' onChange={handleChange} name='email' value={admin.email} />
-                        <input type="text" placeholder='Password' onChange={handleChange} name='password' value={admin.password} />
-                        <button onSubmit={handleAdmin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Login</button>
+                <p className='text-center my-2'>Add a new Admins to Access AdminPanel. 👋</p>
+                <div className='[&>form>input]:border-primary-dark [&>form>input]:bg-[#E8F0FE] [&>form>input]:border-2 [&>form>input]:p-2 [&>form>input]:ps-4 [&>form>input]:rounded-full [&>form>input]:outline-none'>
+                    <Imageinput onImageSelect={(file) => setAdminData(prev => ({ ...prev, image: file}))}/>
+                    <form onSubmit={handleAdmin} className='flex flex-col gap-3 mt-1'>
+                        <input type="text" placeholder='Name' onChange={handleChange} name='name' value={adminData.name} />
+                        <input type="text" placeholder='Email' onChange={handleChange} name='email' value={adminData.email} />
+                        <input type="text" placeholder='Password' onChange={handleChange} name='password' value={adminData.password} />
+                        <button onSubmit={handleAdmin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Register</button>
                     </form>
                 </div>
                 <div className='text-center my-3'>
