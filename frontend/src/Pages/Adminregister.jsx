@@ -9,10 +9,10 @@ import { Imageinput } from '../Components/Imageinput';
 const Adminregister = () => {
 
     const [adminData, setAdminData] = useState({
-        image: '',
         name: '',
         email: '',
-        password: ''
+        password: '',
+        image: ''
     });
     const [error, setError] = useState(null);
 
@@ -66,8 +66,8 @@ const Adminregister = () => {
                 <h3 className='text-3xl text-center font-semibold text-neutral-700'>Admin <span className='text-primary-dark'>Register</span></h3>
                 <p className='text-center my-2'>Add a new Admins to Access AdminPanel. 👋</p>
                 <div className='[&>form>input]:border-primary-dark [&>form>input]:bg-[#E8F0FE] [&>form>input]:border-2 [&>form>input]:p-2 [&>form>input]:ps-4 [&>form>input]:rounded-full [&>form>input]:outline-none'>
-                    <Imageinput onImageSelect={(file) => setAdminData(prev => ({ ...prev, image: file}))}/>
                     <form onSubmit={handleAdmin} className='flex flex-col gap-3 mt-1'>
+                    <Imageinput onImageSelect={(file) => setAdminData(prev => ({ ...adminData, image: file}))}/>
                         <input type="text" placeholder='Name' onChange={handleChange} name='name' value={adminData.name} />
                         <input type="text" placeholder='Email' onChange={handleChange} name='email' value={adminData.email} />
                         <input type="text" placeholder='Password' onChange={handleChange} name='password' value={adminData.password} />

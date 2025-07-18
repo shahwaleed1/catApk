@@ -8,6 +8,7 @@ import AppModel from './models/publish.js';
 import mongoose from 'mongoose';
 import adminRoutes from './routes/Admin.js';
 import cookieParser from 'cookie-parser';
+import adminsRoutes from './controllers/adminData.js';
 
 
 dotenv.config();
@@ -20,19 +21,20 @@ const DBURL = process.env.DB_FULLURL;
 
 app.use(cors())
 app.use(express.json())
-app.use('/uploads', express.static('uploads'))
+// app.use('/uploads', express.static('uploads'))
 app.use(cookieParser())
+
 
 
 dbconnection(DBURL);
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, 'uploads/'),
-    filename: (req, file, cb) =>
-        cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage })
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => cb(null, 'uploads/'),
+//     filename: (req, file, cb) =>
+//         cb(null, Date.now() + path.extname(file.originalname))
+// });
+// const upload = multer({ storage })
 
 
 
@@ -44,29 +46,29 @@ app.get('/',(req, res)=>{
 
 
 
-app.post('/api/publish',upload.single('icon'), async(req, res)=>{
+// app.post('/api/publish',upload.single('icon'), async(req, res)=>{
 
-    const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+//     const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
 
-    try{
-        const newApp = new AppModel({
-            ...req.body,
-            icon: iconUrl
-        });
-        const savedApp = await newApp.save();
+//     try{
+//         const newApp = new AppModel({
+//             ...req.body,
+//             icon: iconUrl
+//         });
+//         const savedApp = await newApp.save();
 
 
-        res.status(200).json({
-            message : 'App added in DB!',
-            data: savedApp,
-        })
+//         res.status(200).json({
+//             message : 'App added in DB!',
+//             data: savedApp,
+//         })
 
-    }
-    catch(err){
-        console.log('Error in Publish api :', err )
-        res.status(500).json({err: 'network error occur publish '})
-    }
-})
+//     }
+//     catch(err){
+//         console.log('Error in Publish api :', err )
+//         res.status(500).json({err: 'network error occur publish '})
+//     }
+// })
 
 
 
@@ -136,6 +138,7 @@ app.get('/api/apps/:id', async (req, res) => {
 
 
 app.use('/api/admin', adminRoutes);
+app.use('/api/admin/admins', adminsRoutes);
 
 
 

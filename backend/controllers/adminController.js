@@ -14,7 +14,13 @@ export const register = async(req, res) => {
         }
 
         const hashPassword = await bcrypt.hash(password, 10);
-        const newAdmin = new adminModel({ name, email, password : hashPassword });
+        const newAdmin = new adminModel({ 
+            name,
+            email, 
+            password : hashPassword,
+            image: req.file?.filename || null,
+        });
+        
         await newAdmin.save()
 
         // const token = jwt.sign({id: admins._id}, process.env.JWT_SECRET, {expiresIn: '1d'});

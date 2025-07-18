@@ -11,6 +11,7 @@ import Appdetails from './Components/Appdetails.jsx'
 import Adminregister from './Pages/Adminregister.jsx'
 import Adminlogin from './Pages/Adminlogin.jsx'
 import { Imageinput } from './Components/Imageinput.jsx'
+import Admins from './Admin/Admins.jsx'
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
   return (
     <>
       <Navbar />
+      <Admins />
 
 
       {/* <Imageinput /> */}
@@ -27,7 +29,7 @@ const App = () => {
       <Routes>
         <Route path='/adminlogin' element={<Adminlogin />} />
         <Route path='/adminregister' element={<Adminregister />} />
-        <Route path='/adminplane' element={<Admin />} />
+        {/* <Route path='/adminplane' element={<Admin />} /> */}
       </Routes>
 
       {/* 

@@ -4,12 +4,18 @@ import fs from "fs"
 
 
 
+const uploadPath = 'uploads';
+if(!fs.existsSync(uploadPath)){
+    fs.mkdirSync(uploadPath);
+}
+
+
 const storage = multer.diskStorage({
     destination: (req, res, cb) => {
         cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-        const uniqueName = Date.now() + '-' + file.originalname;
+        const uniqueName = Date.now() + path.extname(file.originalname);
         cb(null, uniqueName);
     },
 });
