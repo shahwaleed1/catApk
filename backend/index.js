@@ -21,7 +21,7 @@ const DBURL = process.env.DB_FULLURL;
 
 app.use(cors())
 app.use(express.json())
-// app.use('/uploads', express.static('uploads'))
+app.use('/uploads', express.static('uploads'))
 app.use(cookieParser())
 
 

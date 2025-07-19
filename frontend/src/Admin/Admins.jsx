@@ -24,13 +24,13 @@ const Admins = () => {
     }, [])
 
     useEffect(() => {
-        console.log(admins)
+        console.log(admins[8].image)
     })
 
 
 
     return (
-        <div>
+        <div className='flex gap-4 flex-wrap'>
             {admins.map((admin) => (
                 <div key={admin._id} className='max-w-50 p-2 border-2'>
                     <MdDeleteOutline className='ml-auto text-red-500 text-4xl p-2 rounded-full cursor-pointer hover:bg-rose-100' />
