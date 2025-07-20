@@ -29,7 +29,7 @@ const App = () => {
       <Routes>
         <Route path='/adminlogin' element={<Adminlogin />} />
         <Route path='/adminregister' element={<Adminregister />} />
-        {/* <Route path='/adminplane' element={<Admin />} /> */}
+        <Route path='/adminplane' element={<Admin />} />
       </Routes>
 
       {/* 

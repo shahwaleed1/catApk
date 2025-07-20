@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 
 export const register = async(req, res) => {
     const { name, email, password } = req.body;
+    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+
     
     try{
 
@@ -18,7 +20,7 @@ export const register = async(req, res) => {
             name,
             email, 
             password : hashPassword,
-            image: req.file?.filename || null,
+            image: imageUrl
         });
         
         await newAdmin.save()

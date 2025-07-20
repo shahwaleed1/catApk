@@ -7,15 +7,15 @@ import express from 'express';
 const app = express();
 app.use('/uploads', express.static('uploads'))
 
-// const uploadPath = 'uploads';
-// if(!fs.existsSync(uploadPath)){
-//     fs.mkdirSync(uploadPath);
-// }
+const uploadPath = 'uploads';
+if(!fs.existsSync(uploadPath)){
+    fs.mkdirSync(uploadPath);
+}
 
 
 const storage = multer.diskStorage({
-    destination: (req, res, cb) => {
-        cb(null, uploads);
+    destination: (req, file, cb) => {
+        cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
         const uniqueName = Date.now() + path.extname(file.originalname);

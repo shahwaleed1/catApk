@@ -24,7 +24,7 @@ const Admins = () => {
     }, [])
 
     useEffect(() => {
-        console.log(admins[8].image)
+        console.log(admins)
     })
 
 
