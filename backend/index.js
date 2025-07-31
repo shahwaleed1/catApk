@@ -139,6 +139,7 @@ app.get('/api/apps/:id', async (req, res) => {
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin/admins', adminsRoutes);
+// app.use('/api/admin/admins/id:', adminRoutes)
 
 
 
