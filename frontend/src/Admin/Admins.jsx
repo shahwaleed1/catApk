@@ -30,10 +30,10 @@ const Admins = () => {
 
 
     return (
-        <div className='flex gap-4 flex-wrap'>
+        <div className='flex gap-6 flex-wrap mt-14'>
             {admins.map((admin) => (
-                <div key={admin._id} className='max-w-50 p-2 border-2'>
-                    <MdDeleteOutline className='ml-auto text-red-500 text-4xl p-2 rounded-full cursor-pointer hover:bg-rose-100' />
+                <div key={admin._id} className='max-w-60 min-w-50  p-3 rounded-2xl hover:shadow-2xl transition-all delay-75 ease-in'>
+                    <MdDeleteOutline className='ml-auto text-red-500 text-4xl p-2 rounded-full cursor-pointer hover:bg-rose-100 transition-all' />
                     <img src={admin.image} alt={admin.name} className='w-40 m-auto rounded-full border-dashed border-2 p-1' />
                     <div className='text-center mt-3 leading-4'>
                         <h4 className='font-semibold'>{admin.name}</h4>
