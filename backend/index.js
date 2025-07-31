@@ -136,6 +136,18 @@ app.get('/api/apps/:id', async (req, res) => {
     }
 })
 
+app.delete('/api/admin/admins/id:', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const admin = await adminModel.findByIdAndDelete(id);
+        return res.status(204).json({ message: admin });
+    }
+    catch (err) {
+        console.log('Error in admin delete : ', err)
+        return res.status(500).json({ error: err.message })
+    }
+})
+
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/admin/admins', adminsRoutes);

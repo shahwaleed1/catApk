@@ -19,17 +19,17 @@ adminsRoutes.get('/', async(req, res) => {
 })
 
 
-adminsRoutes.delete('/', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const admin = await adminModel.findByIdAndDelete(id);
-        return res.status(204).json({ message: admin });
-    }
-    catch(err){
-        console.log('Error in admin delete : ', err)
-        return res.status(500).json({ error: err.message })
-    }
-})
+// adminsRoutes.delete('/', async (req, res) => {
+//     const { id } = req.params;
+//     try {
+//         const admin = await adminModel.findByIdAndDelete(id);
+//         return res.status(204).json({ message: admin });
+//     }
+//     catch(err){
+//         console.log('Error in admin delete : ', err)
+//         return res.status(500).json({ error: err.message })
+//     }
+// })
 
 
 export default adminsRoutes;
