@@ -3,20 +3,25 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { MdDeleteOutline } from "react-icons/md";
+import Loader from '../Components/Loader';
 
 
 const Admins = () => {
 
     const [admins, setAdmins] = useState([]);
-    const [loader, setLoader] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true)
             try {
                 const response = await axios.get('http://localhost:5000/api/admin/admins');
                 setAdmins(response.data)
             } catch (err) {
                 console.log('error in admins', err)
+            }
+            finally {
+                setLoading(false)
             }
         }
 
@@ -30,9 +35,11 @@ const Admins = () => {
 
 
     return (
-        <div className='flex gap-6 flex-wrap mt-14'>
+        <div>
+            { loading ? <Loader className='h-[80vh]' /> :  
+            <div className='flex gap-6 flex-wrap mt-14'>
             {admins.map((admin) => (
-                <div key={admin._id} className='max-w-60 min-w-50  p-3 rounded-2xl hover:shadow-2xl transition-all delay-75 ease-in'>
+                <div key={admin._id} className='max-w-60 min-w-50  p-3 rounded-2xl  hover:shadow-2xl transition-all delay-75 ease-in'>
                     <MdDeleteOutline className='ml-auto text-red-500 text-4xl p-2 rounded-full cursor-pointer hover:bg-rose-100 transition-all' />
                     <img src={admin.image} alt={admin.name} className='w-40 m-auto rounded-full border-dashed border-2 p-1' />
                     <div className='text-center mt-3 leading-4'>
@@ -42,6 +49,8 @@ const Admins = () => {
                     </div>
                 </div>
             ))}
+                </div>
+            }
         </div>
     )
 }
