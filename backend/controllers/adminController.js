@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export const register = async(req, res) => {
     const { name, email, password } = req.body;
-    const imageUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
 
     
     try{

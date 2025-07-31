@@ -95,7 +95,7 @@ const Apklist = () => {
         }
     }
 
-    // console.log('This data from Apklist componet :', data)
+    console.log('This data from Apklist componet :', data)
 
 
     return (
