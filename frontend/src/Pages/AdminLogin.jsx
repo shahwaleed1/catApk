@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Notyf } from 'notyf';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 const Adminlogin = () => {
@@ -8,6 +8,7 @@ const Adminlogin = () => {
     email: '',
     password: ''
   });
+  const [msg , setMsg] = useState('')
 
   const navgate = useNavigate()
 
@@ -37,13 +38,29 @@ const Adminlogin = () => {
       return
     }
 
+
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', adminLogin);
-      if (response.status == 200) {
-        navgate('/adminplane')
+     
+      setMsg(response.data.message);
+      
+
+      if (response.status === 200) {
+        notyf.success('Success login!')
+        setTimeout(() => {
+          navgate('/adminplane')
+        },1500)
       }
+
+
     } catch (err) {
       console.log('Error in Admin Login :', err)
+
+      if (err.response.data.message) {
+        setMsg(err.response.data.message);
+      } else {
+        setMsg('Something went wrong');
+      }
     }
   }
 
@@ -56,6 +73,7 @@ const Adminlogin = () => {
           <form onSubmit={handleAdminLogin} className='flex flex-col gap-3'>
             <input type="text" placeholder='Email' name='email' value={adminLogin.email} onChange={handleChange} />
             <input type="text" placeholder='Password' name='password' value={adminLogin.password} onChange={handleChange} />
+            {msg && <p className='text-red-500 text-center -my-2'>{msg}</p>}
             <button onSubmit={handleAdminLogin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Login</button>
           </form>
         </div>
