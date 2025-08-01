@@ -8,7 +8,8 @@ import AppModel from './models/publish.js';
 import mongoose from 'mongoose';
 import adminRoutes from './routes/Admin.js';
 import cookieParser from 'cookie-parser';
-import adminsRoutes from './controllers/adminData.js';
+// import adminsRoutes from './controllers/adminData.js';
+import adminModel from './models/adminModel.js';
 
 
 dotenv.config();
@@ -136,8 +137,19 @@ app.get('/api/apps/:id', async (req, res) => {
     }
 })
 
-app.delete('/api/admin/admins/id:', async (req, res) => {
-    const { id } = req.params;
+app.get('/api/admin/admins', async(req, res) => {
+    try{
+        const admins = await adminModel.find()
+        res.status(200).json(admins)
+    }
+    catch(err){
+        console.log('Error in admims getting Data : ', err);
+        res.status(500).json({ error: err.message })
+    }
+})
+
+app.delete('/api/admin/admins/:id', async (req, res) => {
+    const  id = req.params.id;
     try {
         const admin = await adminModel.findByIdAndDelete(id);
         return res.status(204).json({ message: admin });
@@ -150,7 +162,7 @@ app.delete('/api/admin/admins/id:', async (req, res) => {
 
 
 app.use('/api/admin', adminRoutes);
-app.use('/api/admin/admins', adminsRoutes);
+// app.use('/api/admin/admins', adminsRoutes);
 // app.use('/api/admin/admins/id:', adminRoutes)
 
 
