@@ -46,6 +46,8 @@ const App = () => {
         <Route path='/admins' element={<Admins />} />
       </Routes>
       <Footer />
+
+      
       {/* <Admin /> */}
     </>
   )
