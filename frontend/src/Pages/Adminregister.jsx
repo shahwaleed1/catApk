@@ -36,6 +36,11 @@ const Adminregister = () => {
     const handleAdmin = async (e) => {
         e.preventDefault();
 
+        if (!adminData.name || !adminData.email || !adminData.password || !adminData.image) {
+            setError('All field required!');
+            return
+        }
+
         try {
 
             const response = await axios.post(`http://localhost:5000/api/admin/register`, adminData, {
@@ -49,7 +54,9 @@ const Adminregister = () => {
 
             if (response.status == 200) {
                 notyf.success('Succesfully Registion!');
-                navgate('/adminlogin');
+                setTimeout(() => {
+                    navgate('/adminlogin');
+                },1500)
             }
 
         } catch (err) {
@@ -71,6 +78,7 @@ const Adminregister = () => {
                         <input type="text" placeholder='Name' onChange={handleChange} name='name' value={adminData.name} />
                         <input type="text" placeholder='Email' onChange={handleChange} name='email' value={adminData.email} />
                         <input type="text" placeholder='Password' onChange={handleChange} name='password' value={adminData.password} />
+                        {error && <p className='text-center text-red-500 -my-2'>{ error }</p> }
                         <button onSubmit={handleAdmin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Register</button>
                     </form>
                 </div>
