@@ -3,6 +3,8 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleList } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { RiAdminLine } from "react-icons/ri";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+
 
 
 const Sidebar = ({ onMenuClick, activePage }) => {
@@ -34,12 +36,21 @@ const Sidebar = ({ onMenuClick, activePage }) => {
                 </button>
 
                 <button
+                    onClick={() => onMenuClick('admins')}
+                    className={`w-full inline-flex items-center gap-2 ps-3 py-2 my-1
+                    ${activePage === 'admins' ? 'bg-[#375874] text-white' :  'text-white hover:bg-[#4c6377]'}`}
+                >
+                    <RiAdminLine className="text-xl" />
+                    Admins
+                </button>
+
+                <button
                     onClick={() => onMenuClick('adminregister')}
                     className={`w-full inline-flex items-center gap-2 ps-3 py-2 my-1
                     ${activePage === 'adminregister' ? 'bg-[#375874] text-white' :  'text-white hover:bg-[#4c6377]'}`}
                 >
-                    <RiAdminLine className="text-xl" />
-                    Admins
+                    <AiOutlineUsergroupAdd className="text-xl" />
+                    Add Admin
                 </button>
             </div>
         </div>

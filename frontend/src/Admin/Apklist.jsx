@@ -9,7 +9,6 @@ import Formui from '../Components/Formui';
 
 
 
-
 const Apklist = () => {
 
     const [data, setData] = useState([])
@@ -24,6 +23,9 @@ const Apklist = () => {
         images: ''
     })
     const [open, setOpen] = useState(false)
+
+    const [permeation, setPermeation] = useState(false);
+
 
 
 

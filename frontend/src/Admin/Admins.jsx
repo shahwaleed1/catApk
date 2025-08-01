@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { MdDeleteOutline } from "react-icons/md";
 import Loader from '../Components/Loader';
 import { Notyf } from 'notyf';
+import { Link } from "react-router-dom";
 
 
 
@@ -19,7 +20,7 @@ const Admins = () => {
     const notyf = new Notyf({
         duration: 3000,
         position: {
-            x: 'center',
+            x: 'right',
             y: 'top',
         }
     });
@@ -41,7 +42,7 @@ const Admins = () => {
     useEffect(() => {
         fetchData();
     }, [])
-    
+
     const handlerdelete = async (id) => {
         try {
             const admainDeleted = await axios.delete(`${baseURL}/api/admin/admins/${id}`);
@@ -62,8 +63,8 @@ const Admins = () => {
 
 
     return (
-        <div>
-            {loading ? <Loader className='h-[80vh]' /> :
+        <div className='relative'>
+            {loading ? <Loader className='' /> :
                 <div className='flex gap-6 flex-wrap mt-14'>
                     {admins.map((admin) => (
                         <div key={admin._id} className='relative max-w-60 min-w-50 py-6 p-3 rounded-2xl  hover:shadow-2xl transition-all duration-200'>
@@ -83,6 +84,9 @@ const Admins = () => {
                     ))}
                 </div>
             }
+            <div className='my-8 absolute top-0'>
+                <Link className='py-2 px-4 rounded bg-[#20374B] text-white'>Add new Admin </Link>
+            </div>
         </div>
     )
 }

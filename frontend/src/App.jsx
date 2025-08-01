@@ -15,31 +15,37 @@ import Admins from './Admin/Admins.jsx'
 
 
 
+
 const App = () => {
 
   return (
     <>
       <Navbar />
-      <Admins />
+      {/* <Admins /> */}
 
 
       {/* <Imageinput /> */}
 
-      
-      <Routes>
+
+      {/* <Routes>
         <Route path='/adminlogin' element={<Adminlogin />} />
         <Route path='/adminregister' element={<Adminregister />} />
         <Route path='/adminplane' element={<Admin />} />
-      </Routes>
+        <Route path='/admins' element={<Admins />} />
+      </Routes> */}
 
-      {/* 
+
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/appdetails/:id' element={<Appdetails />} />
+        <Route path='/adminlogin' element={<Adminlogin />} />
+        <Route path='/adminregister' element={<Adminregister />} />
+        <Route path='/adminplane' element={<Admin />} />
+        <Route path='/admins' element={<Admins />} />
       </Routes>
-      <Footer /> */}
+      <Footer />
       {/* <Admin /> */}
     </>
   )
