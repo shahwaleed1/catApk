@@ -5,6 +5,7 @@ import { Notyf } from 'notyf';
 import { Link, useNavigate } from 'react-router-dom';
 import Adminlogin from './Adminlogin';
 import { Imageinput } from '../Components/Imageinput';
+import Buttonloader from '../Components/Buttonloader';
 
 const Adminregister = () => {
 
@@ -15,6 +16,9 @@ const Adminregister = () => {
         image: ''
     });
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false)
+
+
 
     const navgate = useNavigate()
 
@@ -35,19 +39,22 @@ const Adminregister = () => {
 
     const handleAdmin = async (e) => {
         e.preventDefault();
+        setLoading(true)
 
         if (!adminData.name || !adminData.email || !adminData.password || !adminData.image) {
             setError('All field required!');
+            setLoading(false)
             return
         }
+
 
         try {
 
             const response = await axios.post(`http://localhost:5000/api/admin/register`, adminData, {
-               headers: { 'Content-Type': 'multipart/form-data' },
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
 
-            if(response.data.isEmail === true){
+            if (response.data.isEmail === true) {
                 notyf.error('Email is already registered')
                 return;
             }
@@ -56,12 +63,15 @@ const Adminregister = () => {
                 notyf.success('Succesfully Registion!');
                 setTimeout(() => {
                     navgate('/adminlogin');
-                },1500)
+                }, 1500)
             }
 
         } catch (err) {
             console.log('Error in Admin Regiser page : ', err)
             notyf.error('Something went wrong while registering');
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -74,12 +84,12 @@ const Adminregister = () => {
                 <p className='text-center my-2'>Add a new Admins to Access AdminPanel. 👋</p>
                 <div className='[&>form>input]:border-primary-dark [&>form>input]:bg-[#E8F0FE] [&>form>input]:border-2 [&>form>input]:p-2 [&>form>input]:ps-4 [&>form>input]:rounded-full [&>form>input]:outline-none'>
                     <form onSubmit={handleAdmin} className='flex flex-col gap-3 mt-1'>
-                    <Imageinput onImageSelect={(file) => setAdminData(prev => ({ ...adminData, image: file}))}/>
+                        <Imageinput onImageSelect={(file) => setAdminData(prev => ({ ...adminData, image: file }))} />
                         <input type="text" placeholder='Name' onChange={handleChange} name='name' value={adminData.name} />
                         <input type="text" placeholder='Email' onChange={handleChange} name='email' value={adminData.email} />
                         <input type="text" placeholder='Password' onChange={handleChange} name='password' value={adminData.password} />
-                        {error && <p className='text-center text-red-500 -my-2'>{ error }</p> }
-                        <button onSubmit={handleAdmin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Register</button>
+                        {error && <p className='text-center text-red-500 -my-2'>{error}</p>}
+                        <button onSubmit={handleAdmin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>{loading ? <Buttonloader /> : 'Register'}</button>
                     </form>
                 </div>
                 <div className='text-center my-3'>
