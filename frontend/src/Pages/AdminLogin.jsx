@@ -2,13 +2,17 @@ import axios from 'axios';
 import { Notyf } from 'notyf';
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Buttonloader from '../Components/Buttonloader';
 
 const Adminlogin = () => {
   const [adminLogin, setAdminLogin] = useState({
     email: '',
     password: ''
   });
-  const [msg , setMsg] = useState('')
+  const [msg, setMsg] = useState('');
+  const [loading, setLoading] = useState(false);
+
+
 
   const navgate = useNavigate()
 
@@ -31,10 +35,12 @@ const Adminlogin = () => {
 
   const handleAdminLogin = async (e) => {
     e.preventDefault();
+    setLoading(true)
     // console.log(adminLogin);
 
     if(!adminLogin.email || !adminLogin.password){
       notyf.error('Fill the Form')
+      setLoading(false)
       return
     }
 
@@ -62,6 +68,9 @@ const Adminlogin = () => {
         setMsg('Something went wrong');
       }
     }
+    finally {
+      setLoading(false)
+    }
   }
 
 
@@ -74,7 +83,7 @@ const Adminlogin = () => {
             <input type="text" placeholder='Email' name='email' value={adminLogin.email} onChange={handleChange} />
             <input type="text" placeholder='Password' name='password' value={adminLogin.password} onChange={handleChange} />
             {msg && <p className='text-red-500 text-center -my-2'>{msg}</p>}
-            <button onSubmit={handleAdminLogin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>Login</button>
+            <button onSubmit={handleAdminLogin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>{ loading ? <Buttonloader /> : 'Login'}</button>
           </form>
         </div>
         <div className='text-center my-3'>
