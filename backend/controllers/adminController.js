@@ -9,6 +9,11 @@ export const register = async(req, res) => {
 
     
     try{
+        
+        const isName = await adminModel.findOne({ name });
+        if (isName) {
+            return res.status(409).json({ message : 'This name already exist.'})
+        }
 
         const isEmail = await adminModel.findOne({ email });
         if(isEmail){
@@ -25,12 +30,11 @@ export const register = async(req, res) => {
         
         await newAdmin.save()
 
-        // const token = jwt.sign({id: admins._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
-        // res.cookie('token', token, {
-        //     httpOnly: true,
-        //     secure: false,
-        //     sameSite: 'strict',
-        // });
+        const token = jwt.sign({ id: newAdmin._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: false,
+        });
 
         return res.status(200).json({ isMatch: false, message: 'Successfully registered!'});
 

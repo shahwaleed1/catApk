@@ -68,7 +68,10 @@ const Adminregister = () => {
 
         } catch (err) {
             console.log('Error in Admin Regiser page : ', err)
-            notyf.error('Something went wrong while registering');
+            // notyf.error('Something went wrong while registering');
+            if (err.response.data.message) {
+                setError(err.response.data.message)
+            }
         }
         finally {
             setLoading(false)
