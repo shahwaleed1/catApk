@@ -66,18 +66,18 @@ const Apklist = () => {
         }
     };
 
-    const handlerDelete = async (id) => {
-        try {
-            const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
-            if (res.status === 200) {
-                notyf.success(res.data.msg)
-            }
-            fetchApps();
-        }
-        catch (err) {
-            console.error('Error deleting app:', err);
-        }
-    }
+    // const handlerDelete = async (id) => {
+    //     try {
+    //         const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
+    //         if (res.status === 200) {
+    //             notyf.success(res.data.msg)
+    //         }
+    //         fetchApps();
+    //     }
+    //     catch (err) {
+    //         console.error('Error deleting app:', err);
+    //     }
+    // }
 
 
     const handleEditClick = (app) => {
@@ -149,7 +149,7 @@ const Apklist = () => {
                     ))}
                 </div>
             )}
-            {showModel && <DeleteModel deleteApp={deleteApp} isOpen={showModel} onClose={() => setShowModel(false)} />}
+            {showModel && <DeleteModel deleteApp={deleteApp} isOpen={showModel} fetchApps={fetchApps} onClose={() => setShowModel(false)} />}
         </div>
     )
 }

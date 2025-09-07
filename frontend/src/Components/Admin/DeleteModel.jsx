@@ -1,6 +1,8 @@
+import axios from 'axios';
+import { Notyf } from 'notyf';
 import React, { useEffect } from 'react'
 
-const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
+const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
 
     useEffect(() => {
         if (isOpen) {
@@ -13,6 +15,30 @@ const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
             document.body.style.overflow = "auto";
         };
     }, [isOpen]);
+
+
+    const notyf = new Notyf({
+            duration: 3000,
+            position: {
+                x: 'center',
+                y: 'top',
+            }
+        });
+
+    const handlerDelete = async (id) => {
+        try {
+            const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
+            if (res.status === 200) {
+                notyf.success(res.data.msg)
+            }
+            fetchApps();
+        }
+        catch (err) {
+            console.error('Error deleting app:', err);
+        }
+
+        fetchApps()
+    }
 
     // console.log('model : ', deleteApp)
 
@@ -33,7 +59,7 @@ const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
                         </div>
                     </div>
                     <div className='flex gap-3 justify-end pt-4'>
-                        <button className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer text-white bg-red-600'>Delete</button>
+                        <button onClick={() => handlerDelete(deleteApp._id) } className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer text-white bg-red-600'>Delete</button>
                         <button onClick={onClose} className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer'>Close</button>
                     </div>
                 </div>
