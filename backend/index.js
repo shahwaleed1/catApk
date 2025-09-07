@@ -47,29 +47,29 @@ app.get('/',(req, res)=>{
 
 
 
-// app.post('/api/publish',upload.single('icon'), async(req, res)=>{
+app.post('/api/publish',upload.single('icon'), async(req, res)=>{
 
-//     const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
 
-//     try{
-//         const newApp = new AppModel({
-//             ...req.body,
-//             icon: iconUrl
-//         });
-//         const savedApp = await newApp.save();
+    try{
+        const newApp = new AppModel({
+            ...req.body,
+            icon: iconUrl
+        });
+        const savedApp = await newApp.save();
 
 
-//         res.status(200).json({
-//             message : 'App added in DB!',
-//             data: savedApp,
-//         })
+        res.status(200).json({
+            message : 'App added in DB!',
+            data: savedApp,
+        })
 
-//     }
-//     catch(err){
-//         console.log('Error in Publish api :', err )
-//         res.status(500).json({err: 'network error occur publish '})
-//     }
-// })
+    }
+    catch(err){
+        console.log('Error in Publish api :', err )
+        res.status(500).json({err: 'network error occur publish '})
+    }
+})
 
 
 
