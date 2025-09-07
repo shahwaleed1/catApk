@@ -30,7 +30,7 @@ const Apklist = () => {
     const [deleteApp, setDeleteApp] = useState(null)
     const [showModel, setShowModel] = useState(false)
     
-    console.log(deleteApp)
+    // console.log(deleteApp)
 
 
     const notyf = new Notyf({
@@ -91,7 +91,7 @@ const Apklist = () => {
             icon: app.image,
             images: ''
         });
-        setOpen(true); // trigger modal open
+        setOpen(true); 
     };
 
 
@@ -106,7 +106,7 @@ const Apklist = () => {
         }
     }
 
-    console.log('This data from Apklist componet :', data)
+    // console.log('This data from Apklist componet :', data)
 
 
     return (

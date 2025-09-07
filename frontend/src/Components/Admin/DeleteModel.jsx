@@ -14,7 +14,7 @@ const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
         };
     }, [isOpen]);
 
-    console.log('model : ', deleteApp)
+    // console.log('model : ', deleteApp)
 
     // if (!isOpen) return null;
 
@@ -29,7 +29,6 @@ const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
                         </div>
                         <div className='leading-4.5'>
                             <h3 className='text-xl font-semibold'>Confirm delete <span className=' px-3 pb-0.5 rounded-full text-white text-sm bg-primary-dark'> {deleteApp.name} </span></h3>
-                            {/* <small className='line-clamp-1'>{deleteApp.name}</small> */}
                             <p>Are you sure you want to delete this App? This action cannot be undone.</p>
                         </div>
                     </div>
@@ -44,3 +43,4 @@ const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
 }
 
 export default DeleteModel
+
