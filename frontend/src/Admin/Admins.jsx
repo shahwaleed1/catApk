@@ -56,9 +56,9 @@ const Admins = () => {
         }
     }
 
-    useEffect(() => {
-        console.log(admins)
-    })
+    // useEffect(() => {
+    //     console.log(admins)
+    // })
 
 
 

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Notyf } from 'notyf';
 import Formui from '../Components/Formui';
 import Loader from '../Components/Loader';
+import DeleteModel from '../Components/Admin/DeleteModel';
 
 
 
@@ -26,7 +27,10 @@ const Apklist = () => {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     
-    const [deleteModel, setDeleteModel] = useState(null)
+    const [deleteApp, setDeleteApp] = useState(null)
+    const [showModel, setShowModel] = useState(false)
+    
+    // console.log(deleteApp)
 
 
     const notyf = new Notyf({
@@ -62,18 +66,18 @@ const Apklist = () => {
         }
     };
 
-    const handlerDelete = async (id) => {
-        try {
-            const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
-            if (res.status === 200) {
-                notyf.success(res.data.msg)
-            }
-            fetchApps();
-        }
-        catch (err) {
-            console.error('Error deleting app:', err);
-        }
-    }
+    // const handlerDelete = async (id) => {
+    //     try {
+    //         const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
+    //         if (res.status === 200) {
+    //             notyf.success(res.data.msg)
+    //         }
+    //         fetchApps();
+    //     }
+    //     catch (err) {
+    //         console.error('Error deleting app:', err);
+    //     }
+    // }
 
 
     const handleEditClick = (app) => {
@@ -87,7 +91,7 @@ const Apklist = () => {
             icon: app.image,
             images: ''
         });
-        setOpen(true); // trigger modal open
+        setOpen(true); 
     };
 
 
@@ -102,7 +106,7 @@ const Apklist = () => {
         }
     }
 
-    console.log('This data from Apklist componet :', data)
+    // console.log('This data from Apklist componet :', data)
 
 
     return (
@@ -134,12 +138,18 @@ const Apklist = () => {
                             </div>
                             <div className='m-1'>
                                 <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
-                                <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' />
+                                {/* <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' /> */}
+                                <button onClick={() => {
+                                    setDeleteApp(app)
+                                    setShowModel(true)
+                                }} >delete</button>
                             </div>
+
                         </div>
                     ))}
                 </div>
             )}
+            {showModel && <DeleteModel deleteApp={deleteApp} isOpen={showModel} fetchApps={fetchApps} onClose={() => setShowModel(false)} />}
         </div>
     )
 }
