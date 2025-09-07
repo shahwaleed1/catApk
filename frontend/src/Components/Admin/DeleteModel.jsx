@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-const DeleteModel = () => {
+const DeleteModel = ({ isOpen, onClose }) => {
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isOpen]);
+
+    // if (!isOpen) return null;
+
+
     return (
-        <div className='absolute top-0 w-full h-screen backdrop-blur-[5px] bg-white/10'>
+        <div className='fixed inset-0 h-screen backdrop-blur-[5px] bg-white/10'>
             <div className='flex items-center justify-center h-full'>
                 <div className='border border-gray-200/50 p-4 rounded-md w-[500px] shadow-2xl text-zinc-600'>
                     <div className='flex gap-4'>
@@ -17,7 +33,7 @@ const DeleteModel = () => {
                     </div>
                     <div className='flex gap-3 justify-end pt-4'>
                         <button className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer text-white bg-red-600'>Delete</button>
-                        <button className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer'>Close</button>
+                        <button onClick={onClose} className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer'>Close</button>
                     </div>
                 </div>
             </div>

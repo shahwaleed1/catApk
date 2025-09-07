@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Notyf } from 'notyf';
 import Formui from '../Components/Formui';
 import Loader from '../Components/Loader';
+import DeleteModel from '../Components/Admin/DeleteModel';
 
 
 
@@ -26,7 +27,8 @@ const Apklist = () => {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     
-    const [deleteModel, setDeleteModel] = useState(null)
+    // const [deleteModel, setDeleteModel] = useState(null)
+    const [deleteApp, setDeleteApp ] = useState(false)
 
 
     const notyf = new Notyf({
@@ -134,12 +136,18 @@ const Apklist = () => {
                             </div>
                             <div className='m-1'>
                                 <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
-                                <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' />
+                                {/* <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' /> */}
+                                <button onClick={() => {
+                                    // setDeleteModel()
+                                    setDeleteApp(true)
+                                }} >delete</button>
                             </div>
+
                         </div>
                     ))}
                 </div>
             )}
+            {deleteApp && < DeleteModel isOpen={deleteApp} onClose={() => setDeleteApp(false)} />}
         </div>
     )
 }
