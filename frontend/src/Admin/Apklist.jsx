@@ -59,26 +59,6 @@ const Apklist = () => {
         }
     }
 
-    const deleteRequest = (id) => {
-        const confirmed = window.confirm("Are you sure you want to delete this?");
-        if (confirmed && handlerDelete) {
-            handlerDelete(id);
-        }
-    };
-
-    // const handlerDelete = async (id) => {
-    //     try {
-    //         const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
-    //         if (res.status === 200) {
-    //             notyf.success(res.data.msg)
-    //         }
-    //         fetchApps();
-    //     }
-    //     catch (err) {
-    //         console.error('Error deleting app:', err);
-    //     }
-    // }
-
 
     const handleEditClick = (app) => {
         setEditId(app._id);
@@ -137,12 +117,12 @@ const Apklist = () => {
                                 <p>update: {new Date(app.createdAt).toLocaleString()}</p>
                             </div>
                             <div className='m-1'>
-                                <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
-                                {/* <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' /> */}
-                                <button onClick={() => {
+                                <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full cursor-pointer hover:bg-amber-100 hover:text-yellow-500' />
+                                <MdDeleteOutline onClick={() => {
                                     setDeleteApp(app)
                                     setShowModel(true)
-                                }} >delete</button>
+                                }}
+                                className='text-4xl p-2 mt-1 rounded-full cursor-pointer hover:bg-rose-100 hover:text-rose-500' />
                             </div>
 
                         </div>
