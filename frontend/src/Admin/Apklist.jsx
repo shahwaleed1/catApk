@@ -137,12 +137,12 @@ const Apklist = () => {
                                 <p>update: {new Date(app.createdAt).toLocaleString()}</p>
                             </div>
                             <div className='m-1'>
-                                <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
-                                {/* <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' /> */}
-                                <button onClick={() => {
+                                <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full cursor-pointer hover:bg-amber-100 hover:text-yellow-500' />
+                                <MdDeleteOutline onClick={() => {
                                     setDeleteApp(app)
                                     setShowModel(true)
-                                }} >delete</button>
+                                }}
+                                className='text-4xl p-2 mt-1 rounded-full cursor-pointer hover:bg-rose-100 hover:text-rose-500' />
                             </div>
 
                         </div>
