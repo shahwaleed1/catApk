@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 
-const DeleteModel = ({ isOpen, onClose }) => {
+const DeleteModel = ({ isOpen, onClose, deleteApp }) => {
 
     useEffect(() => {
         if (isOpen) {
@@ -14,6 +14,8 @@ const DeleteModel = ({ isOpen, onClose }) => {
         };
     }, [isOpen]);
 
+    console.log('model : ', deleteApp)
+
     // if (!isOpen) return null;
 
 
@@ -23,11 +25,11 @@ const DeleteModel = ({ isOpen, onClose }) => {
                 <div className='border border-gray-200/50 p-4 rounded-md w-[500px] shadow-2xl text-zinc-600'>
                     <div className='flex gap-4'>
                         <div className='w-24'>
-                            <img className='w-full rounded-md border border-gray-300' src="./men.jpeg" alt="App image" />
-                            <small className='line-clamp-1'>waleedappdownload</small>
+                            <img className='w-full rounded-md border border-gray-300' src={ deleteApp.icon || deleteApp.image} alt="App image" />
                         </div>
                         <div className='leading-4.5'>
-                            <h3 className='text-xl font-semibold mb-2'>Confirm delete</h3>
+                            <h3 className='text-xl font-semibold'>Confirm delete <span className=' px-3 pb-0.5 rounded-full text-white text-sm bg-primary-dark'> {deleteApp.name} </span></h3>
+                            {/* <small className='line-clamp-1'>{deleteApp.name}</small> */}
                             <p>Are you sure you want to delete this App? This action cannot be undone.</p>
                         </div>
                     </div>

@@ -27,8 +27,10 @@ const Apklist = () => {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
     
-    // const [deleteModel, setDeleteModel] = useState(null)
-    const [deleteApp, setDeleteApp ] = useState(false)
+    const [deleteApp, setDeleteApp] = useState(null)
+    const [showModel, setShowModel] = useState(false)
+    
+    console.log(deleteApp)
 
 
     const notyf = new Notyf({
@@ -138,8 +140,8 @@ const Apklist = () => {
                                 <MdOutlineEdit onClick={() => handleEditClick(app)} className='text-4xl p-2 rounded-full hover:bg-amber-100 hover:text-yellow-500' />
                                 {/* <MdDeleteOutline onClick={() => deleteRequest(app._id)} className='text-4xl p-2 mt-1 rounded-full hover:bg-rose-100 hover:text-rose-500' /> */}
                                 <button onClick={() => {
-                                    // setDeleteModel()
-                                    setDeleteApp(true)
+                                    setDeleteApp(app)
+                                    setShowModel(true)
                                 }} >delete</button>
                             </div>
 
@@ -147,7 +149,7 @@ const Apklist = () => {
                     ))}
                 </div>
             )}
-            {deleteApp && < DeleteModel isOpen={deleteApp} onClose={() => setDeleteApp(false)} />}
+            {showModel && <DeleteModel deleteApp={deleteApp} isOpen={showModel} onClose={() => setShowModel(false)} />}
         </div>
     )
 }
