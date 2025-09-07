@@ -43,8 +43,8 @@ const Home = () => {
 
     return (
         <div>
-            <DeleteModel />
-            {/* <Slider /> */}
+            {/* <DeleteModel /> */}
+            <Slider />
             <div className='container mt-8'>
                 <h2 className='mb-3 text-2xl font-semibold'>New🔥</h2>
                 <div className='flex gap-5 overflow-y-hidden p-5'>

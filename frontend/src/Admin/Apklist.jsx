@@ -25,6 +25,8 @@ const Apklist = () => {
     })
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(false)
+    
+    const [deleteModel, setDeleteModel] = useState(null)
 
 
     const notyf = new Notyf({
