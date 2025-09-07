@@ -59,26 +59,6 @@ const Apklist = () => {
         }
     }
 
-    const deleteRequest = (id) => {
-        const confirmed = window.confirm("Are you sure you want to delete this?");
-        if (confirmed && handlerDelete) {
-            handlerDelete(id);
-        }
-    };
-
-    // const handlerDelete = async (id) => {
-    //     try {
-    //         const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
-    //         if (res.status === 200) {
-    //             notyf.success(res.data.msg)
-    //         }
-    //         fetchApps();
-    //     }
-    //     catch (err) {
-    //         console.error('Error deleting app:', err);
-    //     }
-    // }
-
 
     const handleEditClick = (app) => {
         setEditId(app._id);

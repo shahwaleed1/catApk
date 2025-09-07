@@ -18,18 +18,19 @@ const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
 
 
     const notyf = new Notyf({
-            duration: 3000,
-            position: {
-                x: 'center',
-                y: 'top',
-            }
-        });
+        duration: 3000,
+        position: {
+            x: 'center',
+            y: 'top',
+        }
+    });
 
     const handlerDelete = async (id) => {
         try {
             const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
             if (res.status === 200) {
                 notyf.success(res.data.msg)
+                onClose()
             }
             fetchApps();
         }
@@ -51,7 +52,7 @@ const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
                 <div className='border border-gray-200/50 p-4 rounded-md w-[500px] shadow-2xl text-zinc-600'>
                     <div className='flex gap-4'>
                         <div className='w-24'>
-                            <img className='w-full rounded-md border border-gray-300' src={ deleteApp.icon || deleteApp.image} alt="App image" />
+                            <img className='w-full rounded-md border border-gray-300' src={deleteApp.icon || deleteApp.image} alt="App image" />
                         </div>
                         <div className='leading-4.5'>
                             <h3 className='text-xl font-semibold'>Confirm delete <span className=' px-3 pb-0.5 rounded-full text-white text-sm bg-primary-dark'> {deleteApp.name} </span></h3>
@@ -59,7 +60,7 @@ const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
                         </div>
                     </div>
                     <div className='flex gap-3 justify-end pt-4'>
-                        <button onClick={() => handlerDelete(deleteApp._id) } className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer text-white bg-red-600'>Delete</button>
+                        <button onClick={() => handlerDelete(deleteApp._id)} className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer text-white bg-red-600'>Delete</button>
                         <button onClick={onClose} className='py-2 px-4 rounded-md border border-gray-300 cursor-pointer'>Close</button>
                     </div>
                 </div>
