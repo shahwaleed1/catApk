@@ -20,7 +20,7 @@ const Adminlogin = () => {
   const notyf = new Notyf({
     duration: 3000,
     position: {
-      y:  'top',
+      y: 'top',
       x: 'right'
     }
   })
@@ -38,7 +38,7 @@ const Adminlogin = () => {
     setLoading(true)
     // console.log(adminLogin);
 
-    if(!adminLogin.email || !adminLogin.password){
+    if (!adminLogin.email || !adminLogin.password) {
       notyf.error('Fill the Form')
       setLoading(false)
       return
@@ -47,15 +47,15 @@ const Adminlogin = () => {
 
     try {
       const response = await axios.post('http://localhost:5000/api/admin/login', adminLogin);
-     
+
       setMsg(response.data.message);
-      
+
 
       if (response.status === 200) {
         notyf.success('Success login!')
         setTimeout(() => {
           navgate('/adminplane')
-        },1500)
+        }, 1500)
       }
 
 
@@ -83,7 +83,7 @@ const Adminlogin = () => {
             <input type="text" placeholder='Email' name='email' value={adminLogin.email} onChange={handleChange} />
             <input type="text" placeholder='Password' name='password' value={adminLogin.password} onChange={handleChange} />
             {msg && <p className='text-red-500 text-center -my-2'>{msg}</p>}
-            <button onSubmit={handleAdminLogin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>{ loading ? <Buttonloader /> : 'Login'}</button>
+            <button onSubmit={handleAdminLogin} className='bg-primary-light p-2 rounded-full mt-3 text-white hover:cursor-pointer hover:bg-primary-dark'>{loading ? <Buttonloader /> : 'Login'}</button>
           </form>
         </div>
         <div className='text-center my-3'>

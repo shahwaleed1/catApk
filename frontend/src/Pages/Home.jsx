@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Appdetails from '../Components/Appdetails';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Components/Loader'
+import DeleteModel from '../Components/Admin/DeleteModel';
 
 
 const Home = () => {
@@ -42,14 +43,15 @@ const Home = () => {
 
     return (
         <div>
-            <Slider />
+            <DeleteModel />
+            {/* <Slider /> */}
             <div className='container mt-8'>
                 <h2 className='mb-3 text-2xl font-semibold'>New🔥</h2>
                 <div className='flex gap-5 overflow-y-hidden p-5'>
                     {loading ? <Loader className='mx-auto h-20' /> : (
                         <>
                             {data.map((app) => (
-                                <div key={app._id} onClick={() => navigate(`/appdetails/${app._id}`)} className='w-[9rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in hover:cursor-pointer'>
+                                <div key={app._id} onClick={() => navigate(`/appdetails/${app._id}`)} className='w-[9rem] p-1 rounded-xl pb-3  shadow-md shadow-gray-300 hover:scale-110 transition-all duration-150 ease-in cursor-pointer'>
                                     <img className='min-w-[8rem] rounded-lg' src={app.image || app.icon} alt={app.name} />
                                     <div className='px-1 leading-5'>
                                         <h2 className='font-semibold'>{app.name}</h2>
