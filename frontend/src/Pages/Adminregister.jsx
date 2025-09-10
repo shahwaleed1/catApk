@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Notyf } from 'notyf';
 import { Link, useNavigate } from 'react-router-dom';
-import Adminlogin from './Adminlogin';
+import Adminlogin from './AdminLogin';
 import { Imageinput } from '../Components/Imageinput';
 import Buttonloader from '../Components/Buttonloader';
 

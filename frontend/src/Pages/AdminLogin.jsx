@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Buttonloader from '../Components/Buttonloader';
 
-const Adminlogin = () => {
+const AdminLogin = () => {
   const [adminLogin, setAdminLogin] = useState({
     email: '',
     password: ''
@@ -94,4 +94,4 @@ const Adminlogin = () => {
   )
 }
 
-export default Adminlogin
+export default AdminLogin

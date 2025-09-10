@@ -9,7 +9,7 @@ import About from './Pages/About.jsx'
 import Contact from './Pages/Contact.jsx'
 import Appdetails from './Components/Appdetails.jsx'
 import Adminregister from './Pages/Adminregister.jsx'
-import Adminlogin from './Pages/Adminlogin.jsx'
+import AdminLogin from './Pages/AdminLogin.jsx'
 import { Imageinput } from './Components/Imageinput.jsx'
 import Admins from './Admin/Admins.jsx'
 
@@ -40,14 +40,14 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path='/appdetails/:id' element={<Appdetails />} />
-        <Route path='/adminlogin' element={<Adminlogin />} />
+        <Route path='/adminlogin' element={<AdminLogin />} />
         <Route path='/adminregister' element={<Adminregister />} />
         <Route path='/adminplane' element={<Admin />} />
         <Route path='/admins' element={<Admins />} />
       </Routes>
       <Footer />
 
-      
+
       {/* <Admin /> */}
     </>
   )
