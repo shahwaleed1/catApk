@@ -23,7 +23,7 @@ const Home = () => {
         setLoading(true)
         try {
 
-            const response = await axios.get(`${baseURL}/api/apps/`);
+            const response = await axios.get(`${baseURL}api/apps/`);
             setData(response.data);
         }
         catch (err) {
