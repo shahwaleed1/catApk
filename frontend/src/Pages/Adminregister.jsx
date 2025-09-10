@@ -3,7 +3,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Notyf } from 'notyf';
 import { Link, useNavigate } from 'react-router-dom';
-import Adminlogin from './AdminLogin';
+// import AdminLogin from './AdminLogin';
 import { Imageinput } from '../Components/Imageinput';
 import Buttonloader from '../Components/Buttonloader';
 
@@ -17,6 +17,8 @@ const Adminregister = () => {
     });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false)
+
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
 
 
 
@@ -50,7 +52,7 @@ const Adminregister = () => {
 
         try {
 
-            const response = await axios.post(`http://localhost:5000/api/admin/register`, adminData, {
+            const response = await axios.post(`${baseURL}/api/admin/register`, adminData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 

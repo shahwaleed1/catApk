@@ -9,6 +9,9 @@ const UploadAPK = () => {
     const [icon, setIcon] = useState(null);
     const [screenshort, setScreenShort] = useState([]);
 
+
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
+
     const [formData, setFormData] = useState({
         name: '',
         version: '',
@@ -65,7 +68,7 @@ const UploadAPK = () => {
         } 
 
         try {
-            const response = await axios.post('http://localhost:5000/api/publish', formData, {
+            const response = await axios.post(`${baseURL}/api/publish`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
 

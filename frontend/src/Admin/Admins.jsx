@@ -15,7 +15,8 @@ const Admins = () => {
     const [loading, setLoading] = useState(false)
 
 
-    const baseURL = 'http://localhost:5000'
+    // const baseURL = 'http://localhost:5000'
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
 
     const notyf = new Notyf({
         duration: 3000,

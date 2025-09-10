@@ -13,6 +13,8 @@ import DeleteModel from '../Components/Admin/DeleteModel';
 
 const Apklist = () => {
 
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
+
     const [data, setData] = useState([])
     const [editId, setEditId] = useState(null);
     const [editForm, setEditForm] = useState({
@@ -49,7 +51,7 @@ const Apklist = () => {
     const fetchApps = async () => {
         setLoading(true)
         try {
-            const response = await axios.get('http://localhost:5000/api/apps');
+            const response = await axios.get(`${baseURL}/api/apps`);
             setData(response.data);
         } catch (err) {
             console.log(err);
@@ -78,7 +80,7 @@ const Apklist = () => {
 
     const handlerUpdate = async () => {
         try {
-            const res = await axios.put(`http://localhost:5000/api/apps/${editId}`, editForm);
+            const res = await axios.put(`${baseURL}/api/apps/${editId}`, editForm);
             setEditId(null);
             fetchApps();
         } catch (err) {

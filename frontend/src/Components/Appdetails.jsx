@@ -11,12 +11,14 @@ const Appdetails = () => {
     const [app, setApp] = useState(null);
     const [error, setError] = useState(null);
 
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
+
     const navigate =  useNavigate()
 
     useEffect(() => {
         const fetchApp = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/apps/${id}`)
+                const res = await axios.get(`${baseURL}/api/apps/${id}`)
                 setApp(res.data)
                 // console.log(res.data)
             } catch (err) {

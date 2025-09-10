@@ -14,6 +14,8 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [appdetails, setAppDetails] = useState([]);
 
+    const baseURL = 'https://cat-apk-backend.vercel.app/'
+
     const navigate = useNavigate()
 
 
@@ -21,7 +23,7 @@ const Home = () => {
         setLoading(true)
         try {
 
-            const response = await axios.get(`http://localhost:5000/api/apps/`);
+            const response = await axios.get(`${baseURL}/api/apps/`);
             setData(response.data);
         }
         catch (err) {
