@@ -20,7 +20,9 @@ const PORT = 5000 || 8000;
 const DBURL = process.env.DB_FULLURL;
 
 
-app.use(cors())
+app.use(cors({
+    origin: 'https://cat-apk.vercel.app/'
+}))
 app.use(express.json())
 app.use('/uploads', express.static('uploads'))
 app.use(cookieParser())
