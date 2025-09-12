@@ -48,7 +48,7 @@ const AdminLogin = () => {
 
 
     try {
-      const response = await axios.post(`${baseURL}/api/admin/login`, adminLogin);
+      const response = await axios.post(`${baseURL}api/admin/login`, adminLogin);
 
       setMsg(response.data.message);
 
