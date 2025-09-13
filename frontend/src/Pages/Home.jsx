@@ -14,7 +14,7 @@ const Home = () => {
     const [loading, setLoading] = useState(false);
     const [appdetails, setAppDetails] = useState([]);
 
-    const baseURL = 'catapk-production.up.railway.app'
+    const baseURL = 'https://catapk-production.up.railway.app'
 
     const navigate = useNavigate()
 
@@ -22,7 +22,6 @@ const Home = () => {
     async function fetchData() {
         setLoading(true)
         try {
-
             const response = await axios.get(`${baseURL}/api/apps/`);
             setData(response.data);
         }
