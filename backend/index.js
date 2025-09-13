@@ -49,7 +49,7 @@ app.get('/hi', (req, res) => {
 
 app.post('/api/publish', upload.single('icon'), async (req, res) => {
 
-    const iconUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const iconUrl = `https://catapk-production.up.railway.app/uploads/${req.file.filename}`;
 
     try {
         const newApp = new AppModel({
