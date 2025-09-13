@@ -11,7 +11,7 @@ const Appdetails = () => {
     const [app, setApp] = useState(null);
     const [error, setError] = useState(null);
 
-    const baseURL = 'catapk-production.up.railway.app'
+    const baseURL = 'https://catapk-production.up.railway.app'
 
     const navigate =  useNavigate()
 

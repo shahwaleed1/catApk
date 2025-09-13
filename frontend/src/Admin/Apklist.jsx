@@ -13,7 +13,7 @@ import DeleteModel from '../Components/Admin/DeleteModel';
 
 const Apklist = () => {
 
-    const baseURL = 'catapk-production.up.railway.app'
+    const baseURL = 'https://catapk-production.up.railway.app'
 
     const [data, setData] = useState([])
     const [editId, setEditId] = useState(null);

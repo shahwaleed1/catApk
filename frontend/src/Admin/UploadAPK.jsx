@@ -10,7 +10,7 @@ const UploadAPK = () => {
     const [screenshort, setScreenShort] = useState([]);
 
 
-    const baseURL = 'catapk-production.up.railway.app'
+    const baseURL = 'https://catapk-production.up.railway.app'
 
     const [formData, setFormData] = useState({
         name: '',
