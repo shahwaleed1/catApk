@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export const register = async(req, res) => {
     const { name, email, password } = req.body;
-    const imageUrl = `http://localhost:5000/uploads/${req.file.filename}`;
+    const imageUrl = `https://catapk-production.up.railway.app/uploads/${req.file.filename}`;
 
     
     try{
