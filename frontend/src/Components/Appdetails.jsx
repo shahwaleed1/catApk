@@ -11,7 +11,7 @@ const Appdetails = () => {
     const [app, setApp] = useState(null);
     const [error, setError] = useState(null);
 
-    const baseURL = 'https://cat-apk-backend.vercel.app/'
+    const baseURL = 'catapk-production.up.railway.app'
 
     const navigate =  useNavigate()
 

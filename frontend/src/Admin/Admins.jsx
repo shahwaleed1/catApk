@@ -16,7 +16,7 @@ const Admins = () => {
 
 
     // const baseURL = 'http://localhost:5000'
-    const baseURL = 'https://cat-apk-backend.vercel.app/'
+    const baseURL = 'catapk-production.up.railway.app'
 
     const notyf = new Notyf({
         duration: 3000,

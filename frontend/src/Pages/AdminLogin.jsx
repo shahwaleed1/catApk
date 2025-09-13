@@ -12,7 +12,7 @@ const AdminLogin = () => {
   const [msg, setMsg] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const baseURL = 'https://cat-apk-backend.vercel.app/'
+  const baseURL = 'catapk-production.up.railway.app'
 
 
 
@@ -48,7 +48,7 @@ const AdminLogin = () => {
 
 
     try {
-      const response = await axios.post(`${baseURL}api/admin/login`, adminLogin);
+      const response = await axios.post(`${baseURL}/api/admin/login`, adminLogin);
 
       setMsg(response.data.message);
 
