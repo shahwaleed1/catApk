@@ -4,6 +4,9 @@ import React, { useEffect } from 'react'
 
 const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
 
+    const baseURL = 'https://catapk-production.up.railway.app'
+
+
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
@@ -27,7 +30,7 @@ const DeleteModel = ({ isOpen, onClose, deleteApp, fetchApps }) => {
 
     const handlerDelete = async (id) => {
         try {
-            const res = await axios.delete(`http://localhost:5000/api/apps/${id}`);
+            const res = await axios.delete(`${baseURL}/api/apps/${id}`);
             if (res.status === 200) {
                 notyf.success(res.data.msg)
                 onClose()
